@@ -1,0 +1,1001 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""res\\showart.rc2""  // non-App Studio edited resources\r\n"
+    "\r\n"
+    "#include ""afxres.rc""  // Standard components\r\n"
+    "#include ""afxprint.rc""  // printing/print preview resources\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "RES\\SHOWART.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "RES\\TOOLBAR.BMP"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_CONTEXTMENU MENU
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Make Wallpaper",              IDM_WALLPAPER
+    END
+    POPUP "zz"
+    BEGIN
+        MENUITEM "Set as &Wallpaper",           IDM_WALLPAPER
+    END
+END
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "Close All",                   ID_FILE_CLOSEALL
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...\tCtrl+U",         ID_FILE_SAVE_AS
+        POPUP "Sort"
+        BEGIN
+            MENUITEM "",                            ID
+            MENUITEM "Name",                        ID_FILE_SORT_NAME
+            MENUITEM "Date",                        ID_FILE_SORT_DATE
+            MENUITEM "Size",                        ID_FILE_SORT_SIZE
+        END
+        MENUITEM "Reverse",                     ID_FILE_SORT_REVERSE, CHECKED
+        MENUITEM "Set as &Wallpaper",           IDM_WALLPAPER
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "Preferences...",              ID_FILE_PREFERENCES
+        MENUITEM "Key Commands...\tCtrl+K",     ID_FILE_KEY_COMMANDS
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "",                            ID_FILE_SAVE_AS
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Empty Clipboard",             ID_EDIT_EMPTYCLIPBOARD
+        MENUITEM SEPARATOR
+        MENUITEM "&Rotate 90 CW\tSh-Ctrl+R",    ID_ROTATE_90
+        MENUITEM "Rotate 180\tSh-Ctrl+S",       ID_ROTATE_180
+        MENUITEM "Rotate 270 CW\tSh-Ctrl+T",    ID_ROTATE_270
+        MENUITEM SEPARATOR
+        MENUITEM "Super Delete\tCtrl+D",        ID_SUPER_DELETE
+        MENUITEM "Super Skip\tCtrl+L",          ID_SUPER_SKIP
+        MENUITEM "Super Move\tCtrl+M",          ID_SUPER_MOVE
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "Fi&t to Window\tCtrl+T or Middle Mouse", ID_VIEW_FITTOWINDOW
+        MENUITEM "&Full Screen\tCtrl+F",        ID_VIEW_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "Skip Forward 5\tCtrl+<Right>", ID_SKIP_FORWARD
+        MENUITEM "Skip Forward 25\tCtrl+Shift+<Right>", ID_SKIP_FORWARD_MORE
+        MENUITEM "Skip Back 5\tCtrl+<Left>",    ID_SKIP_BACK
+        MENUITEM "Skip Back 25\tCtrl+Shift+<Left>", ID_SKIP_BACK_MORE
+        MENUITEM SEPARATOR
+        MENUITEM "No-Shrink",                   ID_VIEW_NO_SHRINK
+        MENUITEM "Shrink 1/2",                  ID_VIEW_SHRINK2
+        MENUITEM "Shrink 1/4",                  ID_VIEW_SHRINK4
+        MENUITEM "Shrink 1/8",                  ID_VIEW_SHRINK8
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "&Duplicate",                  ID_WINDOW_NEW
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "&Tile",                       ID_WINDOW_TILE_HORZ
+        MENUITEM "&Arrange Icons",              ID_WINDOW_ARRANGE
+        MENUITEM SEPARATOR
+        MENUITEM "C&lose All",                  ID_FILE_CLOSEALL
+    END
+    POPUP "Utilities"
+    BEGIN
+        MENUITEM "Set as Wallpaper",            IDM_WALLPAPER
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM SEPARATOR
+        MENUITEM "&About SHOWART...",           ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_GIFTYPE ACCELERATORS
+BEGIN
+    "F",            ID_VIEW_FULLSCREEN,     VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_VIEW_FITTOWINDOW,    VIRTKEY, CONTROL, NOINVERT
+END
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    VK_F1,          ID_CONTEXT_HELP,        VIRTKEY, SHIFT, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "K",            ID_FILE_KEY_COMMANDS,   VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "U",            ID_FILE_SAVE_AS,        VIRTKEY, CONTROL, NOINVERT
+    VK_F1,          ID_HELP,                VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    "S",            ID_ROTATE_180,          VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "T",            ID_ROTATE_270,          VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "R",            ID_ROTATE_90,           VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_LEFT,        ID_SKIP_BACK,           VIRTKEY, CONTROL, NOINVERT
+    VK_LEFT,        ID_SKIP_BACK_MORE,      VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_RIGHT,       ID_SKIP_FORWARD,        VIRTKEY, CONTROL, NOINVERT
+    VK_RIGHT,       ID_SKIP_FORWARD_MORE,   VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "D",            ID_SUPER_DELETE,        VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_SUPER_MOVE,          VIRTKEY, CONTROL, NOINVERT
+    "L",            ID_SUPER_SKIP,          VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_VIEW_FITTOWINDOW,    VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_VIEW_FULLSCREEN,     VIRTKEY, CONTROL, NOINVERT
+    "L",            ID_SUPER_SKIP_DEFAULT,  VIRTKEY, SHIFT, ALT, NOINVERT
+END
+
+IDR_BMPTYPE ACCELERATORS
+BEGIN
+    "F",            ID_VIEW_FULLSCREEN,     VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_VIEW_FITTOWINDOW,    VIRTKEY, CONTROL, NOINVERT
+END
+
+IDR_TIFFTYPE ACCELERATORS
+BEGIN
+    "F",            ID_VIEW_FULLSCREEN,     VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_VIEW_FITTOWINDOW,    VIRTKEY, CONTROL, NOINVERT
+END
+
+IDR_JPEGTYPE ACCELERATORS
+BEGIN
+    "F",            ID_VIEW_FULLSCREEN,     VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_VIEW_FITTOWINDOW,    VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 34, 22, 218, 88
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About SHOWART"
+FONT 11, "Lucida Handwriting", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "SHOWART Version 8.0\nJune 2019",IDC_VERSION,34,9,132,33,SS_SUNKEN
+    LTEXT           "Copyright © 1993 - 2019",IDC_STATIC,33,50,119,8
+    DEFPUSHBUTTON   "OK",IDOK,176,6,32,14,WS_GROUP
+    CTEXT           "By Byron Nevins",IDC_STATIC,67,63,109,8
+END
+
+IDD_PREFERENCES DIALOGEX 0, 0, 384, 269
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Showart Preferences"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    CONTROL         "Make Fit to Window the default",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,38,147,10
+    CONTROL         "Debug Mode",IDC_DEBUG_DISPLAY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,213,54,10
+    CONTROL         "Show Jpeg Error Messages",IDC_SKIP_BAD_ART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,67,99,10
+    EDITTEXT        IDC_AUTOTIME,32,92,35,22,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin2",IDC_SPIN2,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNLEFT | UDS_AUTOBUDDY | UDS_ARROWKEYS,13,95,11,17
+    LTEXT           "Auto Navigate Time (seconds)",IDC_STATIC,77,99,96,8
+    LTEXT           "File Sorting",IDC_STATIC,249,27,36,8
+    GROUPBOX        "Type",IDC_STATIC,231,44,71,76
+    CONTROL         "Name",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,240,59,35,10
+    CONTROL         "Size",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,240,73,29,10
+    CONTROL         "Date",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,240,87,31,10
+    CONTROL         "Random",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,240,101,43,10
+    GROUPBOX        "Direction",IDC_STATIC,229,130,77,46
+    CONTROL         "Ascending",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,240,145,49,10
+    CONTROL         "Descending",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,240,159,54,10
+    DEFPUSHBUTTON   "OK",IDOK,129,207,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,199,207,50,14
+    EDITTEXT        IDC_JPEG_QUALITY,32,124,35,22,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin2",IDC_SPIN3,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNLEFT | UDS_AUTOBUDDY | UDS_ARROWKEYS,14,126,11,17
+    LTEXT           "JPEG Quality",IDC_STATIC,78,131,42,8
+    CONTROL         "Always open in the same directory",IDC_DEFAULT_DIR_ALWAYS_OPEN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,165,123,10
+    EDITTEXT        IDC_DEFAULT_DIR,14,178,131,14,ES_AUTOHSCROLL
+    GROUPBOX        "Default Open Directory",IDC_STATIC,5,152,156,50
+    CONTROL         "Safe Copy Mode",IDC_SAFECOPY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,53,147,10
+END
+
+IDD_VENUS DIALOG 0, 0, 265, 163
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,196,30,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,199,58,50,14
+    EDITTEXT        IDC_EDIT1,93,29,31,19,ES_AUTOHSCROLL
+    RTEXT           "Start Number",IDC_STATIC,33,33,52,12
+END
+
+IDD_CUSTOM_OPEN DIALOG 0, 0, 288, 366
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Spin1",IDC_SPIN1,"msctls_updown32",UDS_ARROWKEYS,41,312,10,14
+    CONTROL         "Slider1",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,59,309,100,15
+    CONTROL         "List1",IDC_LIST1,"SysListView32",WS_BORDER | WS_TABSTOP,167,290,60,50
+    CONTROL         "",IDC_RICHEDIT1,"RICHEDIT",TCS_VERTICAL | WS_BORDER | WS_TABSTOP,209,258,40,14
+    CONTROL         "Progress1",IDC_PROGRESS1,"msctls_progress32",WS_BORDER,19,258,80,14
+    CONTROL         "Check1",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,117,255,41,10
+    CONTROL         "",1119,"Static",SS_BLACKFRAME,19,16,244,229
+END
+
+IDD_KEY_COMMANDS DIALOGEX 0, 0, 629, 393
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "One-Key Commands"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_EDITROOT,223,14,135,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT1,92,90,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,92,110,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,92,128,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,92,147,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,92,166,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,92,185,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,92,204,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT8,92,223,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT9,92,242,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT10,92,261,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT11,92,280,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT12,92,299,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT13,92,318,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT14,267,90,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT15,267,109,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT16,267,128,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT17,267,147,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT18,267,167,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT19,267,186,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT20,267,205,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT21,267,223,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT22,267,242,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT23,267,261,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT24,267,280,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT25,267,299,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT26,267,319,87,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,203,41,43,17
+    PUSHBUTTON      "Cancel",IDCANCEL,298,41,43,17
+    LTEXT           "Root Dir",IDC_STATIC,184,18,27,8
+    EDITTEXT        IDC_EDIT27,455,147,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT28,455,166,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT29,455,184,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT30,455,203,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT31,455,224,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT32,455,243,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT33,455,262,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT34,455,280,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT35,455,299,87,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT36,455,318,87,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_SCHEMES,451,50,93,141,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Schemes",IDC_STATIC,394,17,188,102
+    EDITTEXT        IDC_NEW_SCHEME,452,32,70,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Clone",IDC_ADD_SCHEME,414,32,29,12
+    COMBOBOX        IDC_MODE1,24,90,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE2,24,109,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE3,24,128,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE4,24,147,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE5,24,166,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE6,24,185,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE7,24,204,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE8,24,223,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE9,24,242,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE10,24,261,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE11,24,280,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE12,24,299,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE13,24,318,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "A",IDC_STATIC,70,93,14,8
+    CTEXT           "B",IDC_STATIC,70,112,14,8
+    CTEXT           "C",IDC_STATIC,70,131,14,8
+    CTEXT           "D",IDC_STATIC,70,150,14,8
+    CTEXT           "E",IDC_STATIC,70,169,14,8
+    CTEXT           "F",IDC_STATIC,70,188,14,8
+    CTEXT           "G",IDC_STATIC,70,207,14,8
+    CTEXT           "H",IDC_STATIC,70,226,14,8
+    CTEXT           "I",IDC_STATIC,70,245,14,8
+    CTEXT           "J",IDC_STATIC,70,264,14,8
+    CTEXT           "K",IDC_STATIC,70,283,14,8
+    CTEXT           "L",IDC_STATIC,70,302,14,8
+    CTEXT           "M",IDC_STATIC,70,321,14,8
+    CTEXT           "N",IDC_STATIC,246,92,14,8
+    CTEXT           "O",IDC_STATIC,246,111,14,8
+    CTEXT           "P",IDC_STATIC,246,130,14,8
+    CTEXT           "Q",IDC_STATIC,246,150,14,8
+    CTEXT           "R",IDC_STATIC,246,169,14,8
+    CTEXT           "S",IDC_STATIC,246,188,14,8
+    CTEXT           "T",IDC_STATIC,246,206,14,8
+    CTEXT           "U",IDC_STATIC,246,225,14,8
+    CTEXT           "V",IDC_STATIC,246,244,14,8
+    CTEXT           "W",IDC_STATIC,246,263,14,8
+    CTEXT           "X",IDC_STATIC,246,282,14,8
+    CTEXT           "Y",IDC_STATIC,246,302,14,8
+    CTEXT           "Z",IDC_STATIC,246,321,14,8
+    COMBOBOX        IDC_MODE14,200,91,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE15,200,110,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE16,200,129,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE17,200,148,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE18,200,167,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE19,200,186,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE20,200,206,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE21,200,224,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE22,200,243,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE23,200,262,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE24,200,281,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE25,200,300,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE26,200,319,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "0",IDC_STATIC,421,151,14,8
+    CTEXT           "1",IDC_STATIC,421,168,14,8
+    CTEXT           "2",IDC_STATIC,421,187,14,8
+    CTEXT           "3",IDC_STATIC,421,207,14,8
+    CTEXT           "4",IDC_STATIC,421,226,14,8
+    CTEXT           "5",IDC_STATIC,421,245,14,8
+    CTEXT           "6",IDC_STATIC,421,263,14,8
+    CTEXT           "7",IDC_STATIC,421,282,14,8
+    CTEXT           "8",IDC_STATIC,421,301,14,8
+    COMBOBOX        IDC_MODE27,375,148,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE28,375,167,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE29,375,186,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE30,375,205,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE31,375,224,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE32,375,243,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE33,375,263,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE34,375,281,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE35,375,300,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MODE36,375,319,42,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CTEXT           "9",IDC_STATIC,421,321,14,8
+    COMBOBOX        IDC_MODE37,25,34,40,61,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Set All",IDC_SetAll,26,55,30,14
+    GROUPBOX        "Global Mode",IDC_STATIC,15,20,68,54
+    PUSHBUTTON      "Delete",IDC_DELETE_SCHEME,413,50,29,12
+    CONTROL         "Use Batch File",IDC_USE_BATCH_FILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,97,30,81,10
+    PUSHBUTTON      "Clear All",IDC_CLEAR_ALL,453,75,50,14
+END
+
+IDD_SUPER_DELETE DIALOGEX 0, 0, 186, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Super Delete"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,34,41,41,15,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,85,42,11,15
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    LTEXT           "Number of chars",IDC_STATIC,38,25,54,8
+END
+
+IDD_SUPER_SKIP DIALOGEX 0, 0, 186, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Super Skip"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,34,41,41,15,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,85,42,11,15
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    LTEXT           "Number of chars",IDC_STATIC,38,25,54,8
+END
+
+IDD_SUPER_MOVE DIALOGEX 0, 0, 249, 126
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Super Move"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,34,41,41,15,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_WHERE,20,87,139,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,192,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,192,24,50,14
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS,85,42,11,15
+    LTEXT           "Number of chars",IDC_STATIC,38,25,54,8
+    LTEXT           "Where to move the files",IDC_STATIC,51,73,78,8
+    PUSHBUTTON      "Browse...",IDC_BUTTON1,177,87,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 79
+    END
+
+    IDD_PREFERENCES, DIALOG
+    BEGIN
+    END
+
+    IDD_VENUS, DIALOG
+    BEGIN
+    END
+
+    IDD_CUSTOM_OPEN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 281
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 359
+    END
+
+    IDD_KEY_COMMANDS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 619
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 386
+    END
+
+    IDD_SUPER_DELETE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_SUPER_SKIP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_SUPER_MOVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 242
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 119
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_KEY_COMMANDS DLGINIT
+BEGIN
+    IDC_MODE1, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE1, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE1, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE1, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE2, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE2, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE2, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE2, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE3, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE3, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE3, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE3, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE4, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE4, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE4, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE4, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE5, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE5, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE5, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE5, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE6, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE6, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE6, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE6, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE7, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE7, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE7, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE7, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE8, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE8, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE8, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE8, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE9, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE9, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE9, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE9, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE10, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE10, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE10, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE10, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE11, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE11, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE11, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE11, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE12, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE12, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE12, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE12, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE13, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE13, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE13, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE13, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE14, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE14, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE14, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE14, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE15, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE15, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE15, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE15, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE16, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE16, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE16, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE16, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE17, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE17, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE17, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE17, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE18, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE18, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE18, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE18, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE19, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE19, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE19, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE19, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE20, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE20, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE20, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE20, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE21, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE21, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE21, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE21, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE22, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE22, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE22, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE22, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE23, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE23, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE23, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE23, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE24, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE24, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE24, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE24, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE25, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE25, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE25, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE25, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE26, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE26, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE26, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE26, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE27, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE27, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE27, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE27, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE28, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE28, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE28, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE28, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE29, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE29, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE29, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE29, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE30, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE30, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE30, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE30, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE31, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE31, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE31, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE31, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE32, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE32, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE32, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE32, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE33, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE33, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE33, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE33, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE34, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE34, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE34, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE34, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE35, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE35, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE35, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE35, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE36, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE36, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE36, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE36, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    IDC_MODE37, 0x403, 5, 0
+0x6f4d, 0x6576, "\000" 
+    IDC_MODE37, 0x403, 5, 0
+0x6f43, 0x7970, "\000" 
+    IDC_MODE37, 0x403, 6, 0
+0x6e49, 0x6564, 0x0078, 
+    IDC_MODE37, 0x403, 5, 0
+0x694c, 0x7473, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "SHOWART Windows Application\nArt\nArt\nArt Files (*.jpg)\n.jpg\njpegfile\nJPEG File Type"
+    IDR_BMPTYPE             "\nBMP\nBMP Document\nBMP Files (*.bmp)\n.bmp\nBMPFileType\nBMP File Type"
+    IDR_DIBTYPE             "\nDIB\nDIB Document\nDIB Files (*.dib)\n.dib\nDIBFileType\nDIB File Type"
+    IDR_TIFFTYPE            "\nTIFF\nTIFF Document\nTIFF Files (*.tif)\n.tif\nTIFFFileType\nTIFF File Type"
+    IDR_GIFTYPE             "\nGIF\nGIF Document\nGIF Files (*.gif)\n.gif\nGIFFileType\nGIF File Type"
+    IDR_JPEGTYPE            "\nJPG\nJPEG Document\nJPEG Files (*.jpg)\n.jpg\nJPEGFileType\nJPEG File Type"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "SHOWART Windows Application"
+    AFX_IDS_IDLEMESSAGE     "For Help, press F1"
+    AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Create a new document"
+    ID_FILE_OPEN            "Open an existing document"
+    ID_FILE_CLOSE           "Close the active document"
+    ID_FILE_SAVE            "Save the active document"
+    ID_FILE_SAVE_AS         "Save the active document with a new name"
+    ID_FILE_PAGE_SETUP      "Change the printing options"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options"
+    ID_FILE_PRINT           "Print the active document"
+    ID_FILE_PRINT_PREVIEW   "Display full pages"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright"
+    ID_APP_EXIT             "Quit the application; prompts to save documents"
+    ID_HELP_INDEX           "List Help topics"
+    ID_HELP_USING           "Display instructions about how to use help"
+    ID_CONTEXT_HELP         "Display help for clicked on buttons, menus and windows"
+    ID_HELP                 "Display help for current task or command"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane"
+    ID_PREV_PANE            "Switch back to the previous window pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles"
+    ID_WINDOW_SPLIT         "Split the active window into panes"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection"
+    ID_EDIT_CLEAR_ALL       "Erase everything"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard"
+    ID_EDIT_FIND            "Find the specified text"
+    ID_EDIT_PASTE           "Insert Clipboard contents"
+    ID_EDIT_REPEAT          "Repeat the last action"
+    ID_EDIT_REPLACE         "Replace specific text with different text"
+    ID_EDIT_SELECT_ALL      "Select the entire document"
+    ID_EDIT_UNDO            "Undo the last action"
+    ID_EDIT_REDO            "Redo the previously undone action"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_FULLSCREEN      "Display the active Bitmap fullscreen"
+    ID_VIEW_FITTOWINDOW     "Stretch art to fit window"
+    ID_EDIT_EMPTYCLIPBOARD  "Empty the Windows Clipboard"
+    ID_FILE_PREFERENCES     "Configure Showart"
+    ID_FILE_CLOSEALL        "Close all Open Art Files and Windows"
+    ID_CDROM_VENUS          "Venus CD - browse"
+    ID_CDROM_VENUSAUTO      "Venus - Auto"
+END
+
+STRINGTABLE
+BEGIN
+    ID_SUPER_DELETE         "Instantly deletes all files that begin with the first 6 characters"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "res\showart.rc2"  // non-App Studio edited resources
+
+#include "afxres.rc"  // Standard components
+#include "afxprint.rc"  // printing/print preview resources
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

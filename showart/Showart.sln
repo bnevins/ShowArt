@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Showart", "Showart.vcxproj", "{462417D6-E92B-4B23-95D0-63C0E1118909}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Template|Win32 = Template|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{462417D6-E92B-4B23-95D0-63C0E1118909}.Debug|Win32.ActiveCfg = Release|Win32
+		{462417D6-E92B-4B23-95D0-63C0E1118909}.Debug|Win32.Build.0 = Release|Win32
+		{462417D6-E92B-4B23-95D0-63C0E1118909}.Release|Win32.ActiveCfg = Release|Win32
+		{462417D6-E92B-4B23-95D0-63C0E1118909}.Release|Win32.Build.0 = Release|Win32
+		{462417D6-E92B-4B23-95D0-63C0E1118909}.Template|Win32.ActiveCfg = Template|Win32
+		{462417D6-E92B-4B23-95D0-63C0E1118909}.Template|Win32.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {76F9FBDF-35F1-4684-9241-1A084444B7FE}
+	EndGlobalSection
+EndGlobal

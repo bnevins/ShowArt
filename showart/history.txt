@@ -1,0 +1,83 @@
+Version 4.0
+What a nightmare!  I spent about FIFTEEN hours whipping the hideous jpeg code until it finally bent to my will.
+
+You can now save jpeg files directly in Showart!
+
+Currently -- do a File/Save As and give it a filename with ".jpg" or ".jpeg".  (If you give the filename extension as bmp -- you will get the usual gigantic bmp file).
+
+If you press the little "save" icon or choose File/Save -- it will instantly overwrite your original file with a fresh copy using your Quality factor.  So be careful!
+
+Go to File/Preferences to set the JPEG Quality (I allow anything from 25-95).
+
+If you press the little "save" icon or choose File/Save -- it will overwrite your original with a fresh copy using your Quality factor.  So be careful!
+
+Once you set this *all* jpeg saves will use that quality.
+
+I did some experimenting.  With smaller images from the internet (you know:  puppies, duckies, kittens, etc.) you need a bigger quality factor.
+
+For huge digital pictures from your camera I can start to detect a difference once the Quality goes under 50.  If you pick a number greater than 75 - it will produce a file BIGGER than the original.  I would only use > 75 for writing an important jpeg from a .bmp file.
+
+You can easily experiment by getting a test jpg and then saving it with different names after changing the quality each time.
+
+------------------------------------------------------------------------------
+
+5.0 -- shrinking
+5.1
+Fixed annoying rotate bug
+Fixed annoying limitation to size of items in Open
+
+------------------------------------------------------------------------------
+
+version 6 10/3/2004
+
+Super-delete
+Super-Move
+Super-Skip
+D&D - remember which dir they came from for next Open
+D&D - press <CTRL> while dragging -- add files w/o wiping out old ones.
+
+Version 6.1 11/8/2004
+
+Massive change to Key Commands Dialog:
+-- Added Delete Scheme button
+-- Copy/Move/Index/List are selectable for every key
+
+Version 6.2 11/28/2004	
+-- Added browse folders button to Super-Move
+-- Changed "skip bad art" to "Show JPeg error messages" in preferences -- and made it work!
+   I.e. When it is checked -- the dialog box appears with the exact message.  
+   if it's unchecked -- no dialog box appears, and the file is skipped.
+  
+version 6.5 -- Fixed bug where CD files could not be viewed.
+
+version 7.0 -- added a hot key for Save As
+
+version 7.1:
+
+
+1) Did you know:  put a "$" as the first character of a key command and the "rootdir" will replace it.
+
+e.g. the root dir is:  "c:\robsporn\hugeGlassObjectsinPussy"
+
+Set "B" to "$\best".  This resolves to "c:\robsporn\hugeGlassObjectsinPussy\best"
+
+===========
+
+I'm tired of constantly changing the rootdir in order to have "best", "awesome", whatever directories
+
+New Feature in 7.1:
+
+If you start a key command with "%" then the root-dir is ignored.  Instead it uses the directory of the current picture.
+
+E.g. if you are looking at "C:\scubatrip23" and you set a key command to "%manta" then the file will go to "C:\scubatrip23\manta" and the rootdir is ignored.
+
+=================
+
+7.2:  
+
+Now in List mode the drive letter is stripped off
+
+==================
+
+7.5 
+No real changes I think.  Installer working again.
