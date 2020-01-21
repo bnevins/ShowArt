@@ -47,7 +47,7 @@
     <IncludePath>E:\dev\cpp\win\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\..\..\lib\</OutDir>
+    <OutDir>.\..\dist\</OutDir>
     <IntDir>.\Release\</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
@@ -83,9 +83,9 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;jpegd.lib;jpegextd.lib;tiffd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\..\..\dist\bndibd.dll</OutputFile>
+      <OutputFile>.\..\dist\bndibd.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>.\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>.\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\..\..\lib/bndibd.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -94,8 +94,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <CustomBuildStep>
-      <Command>copy  release\bndib.lib ..\..\lib
-</Command>
+      <Command>
+      </Command>
       <Outputs>..\..\lib\bndib.lib;%(Outputs)</Outputs>
     </CustomBuildStep>
     <Midl>
@@ -109,7 +109,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.\jpegext;.\..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\jpegext;.\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -129,13 +129,13 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;jpeg.lib;jpegext.lib;tiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\..\..\dist\bndib.dll</OutputFile>
+      <OutputFile>.\..\dist\bndib.dll</OutputFile>
       <Version>1.1</Version>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>.\..\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\..\..\lib/bndib.pdb</ProgramDatabaseFile>
+      <AdditionalLibraryDirectories>.\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\..\lib/bndib.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>.\..\..\lib/bndib.lib</ImportLibrary>
+      <ImportLibrary>.\..\lib/bndib.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
