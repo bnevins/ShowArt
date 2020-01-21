@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{c056160c-1a75-4575-bf37-d02575016b69}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{2fc4e480-9e23-4928-a91b-a649f251b137}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{cd70a1c7-e669-49e7-a616-f7feb5b33644}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MYTIFF.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdtif.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_CCIT.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_CLOS.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_COMP.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_COMR.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_DIR.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_DUMP.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_ERRO.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_FAX3.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_FAX4.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_FLUS.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_LZW.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_OPEN.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_PACK.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_READ.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_SWAB.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_WARN.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TIF_WRIT.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdtif.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TIFF.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TIFFCOMP.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TIFFDEFS.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TIFFIO.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
