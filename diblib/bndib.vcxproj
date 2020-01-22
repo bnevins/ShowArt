@@ -134,13 +134,13 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;jpeg.lib;jpegext.lib;tiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\Release\bndib.dll</OutputFile>
+      <OutputFile>.\..\dist\\bndib.dll</OutputFile>
       <Version>1.1</Version>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>.\..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>.\..\lib/bndib.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>.\Release\bndib.lib</ImportLibrary>
+      <ImportLibrary>$(OutDir)\..\..\lib\$(TargetName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>

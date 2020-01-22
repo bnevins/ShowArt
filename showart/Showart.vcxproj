@@ -96,7 +96,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>bndib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\Release\showart.exe</OutputFile>
+      <OutputFile>.\..\dist\showart.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>./../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>.\Release/showart.pdb</ProgramDatabaseFile>
