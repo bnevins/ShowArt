@@ -147,6 +147,10 @@
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>132224</StackReserveSize>
     </Link>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DIALOGS.CPP">
