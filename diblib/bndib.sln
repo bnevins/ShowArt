@@ -4,6 +4,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bndib", "bndib.vcxproj", "{2B6C4A76-D5CE-4FE2-98FE-E757FF293D6D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B41B0900-36FD-48D0-AA64-CD6F315DD65D} = {B41B0900-36FD-48D0-AA64-CD6F315DD65D}
+		{B6A3543F-64AB-45E7-B5F8-69631C7A6B69} = {B6A3543F-64AB-45E7-B5F8-69631C7A6B69}
+		{BFBF4A8B-E682-4229-A7E7-045FC3BC4D9D} = {BFBF4A8B-E682-4229-A7E7-045FC3BC4D9D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jpeg", "jpeg\jpeg.vcxproj", "{B6A3543F-64AB-45E7-B5F8-69631C7A6B69}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jpegext", "jpegext\jpegext.vcxproj", "{BFBF4A8B-E682-4229-A7E7-045FC3BC4D9D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tiff", "TIFF\Tiff.vcxproj", "{B41B0900-36FD-48D0-AA64-CD6F315DD65D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +26,18 @@ Global
 		{2B6C4A76-D5CE-4FE2-98FE-E757FF293D6D}.Debug|x86.Build.0 = Debug|Win32
 		{2B6C4A76-D5CE-4FE2-98FE-E757FF293D6D}.Release|x86.ActiveCfg = Release|Win32
 		{2B6C4A76-D5CE-4FE2-98FE-E757FF293D6D}.Release|x86.Build.0 = Release|Win32
+		{B6A3543F-64AB-45E7-B5F8-69631C7A6B69}.Debug|x86.ActiveCfg = Debug|Win32
+		{B6A3543F-64AB-45E7-B5F8-69631C7A6B69}.Debug|x86.Build.0 = Debug|Win32
+		{B6A3543F-64AB-45E7-B5F8-69631C7A6B69}.Release|x86.ActiveCfg = Release|Win32
+		{B6A3543F-64AB-45E7-B5F8-69631C7A6B69}.Release|x86.Build.0 = Release|Win32
+		{BFBF4A8B-E682-4229-A7E7-045FC3BC4D9D}.Debug|x86.ActiveCfg = Debug|Win32
+		{BFBF4A8B-E682-4229-A7E7-045FC3BC4D9D}.Debug|x86.Build.0 = Debug|Win32
+		{BFBF4A8B-E682-4229-A7E7-045FC3BC4D9D}.Release|x86.ActiveCfg = Release|Win32
+		{BFBF4A8B-E682-4229-A7E7-045FC3BC4D9D}.Release|x86.Build.0 = Release|Win32
+		{B41B0900-36FD-48D0-AA64-CD6F315DD65D}.Debug|x86.ActiveCfg = Debug|Win32
+		{B41B0900-36FD-48D0-AA64-CD6F315DD65D}.Debug|x86.Build.0 = Debug|Win32
+		{B41B0900-36FD-48D0-AA64-CD6F315DD65D}.Release|x86.ActiveCfg = Release|Win32
+		{B41B0900-36FD-48D0-AA64-CD6F315DD65D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
