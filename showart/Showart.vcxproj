@@ -345,6 +345,11 @@
     <None Include="testlist.txt" />
     <None Include="RES\TOOLBAR.BMP" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\diblib\bndib.vcxproj">
+      <Project>{2b6c4a76-d5ce-4fe2-98fe-e757ff293d6d}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
