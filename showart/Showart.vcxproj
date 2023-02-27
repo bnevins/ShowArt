@@ -98,7 +98,7 @@
       <AdditionalDependencies>bndib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\..\dist\showart.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>./../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>./../diblib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>.\Release/showart.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>132224</StackReserveSize>
@@ -139,9 +139,9 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>bndibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\..\dist\showartd.exe</OutputFile>
+      <OutputFile>$(ProjectDir)$(Configuration)\$(ProjectName)d.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>./../lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>./../diblib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/showartd.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
