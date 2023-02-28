@@ -237,7 +237,6 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
-    <ClCompile Include="PNG.cpp" />
     <ClCompile Include="Registration.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -323,7 +322,6 @@
     <ClInclude Include="KeyDlg.h" />
     <ClInclude Include="Mainfrm.h" />
     <ClInclude Include="MegaFileOpen.h" />
-    <ClInclude Include="PNG.h" />
     <ClInclude Include="Registration.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="showart.h" />

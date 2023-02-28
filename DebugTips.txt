@@ -1,0 +1,11 @@
+#define DEBUG_SLOWOPEN
+#ifdef DEBUG_SLOWOPEN
+	std::ofstream outfile;
+	outfile.open("c:/temp/debugslow.txt", std::ios_base::app);
+	outfile << "******************************************************\n";
+	outfile << "*******   " << newNum << " Files to read..." << "        ********\n";
+	outfile << "******************************************************\n";
+	outfile.flush();
+#endif
+
+Then tail -f the file and run the program

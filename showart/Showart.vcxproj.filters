@@ -81,9 +81,6 @@
     <ClCompile Include="Winutil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PNG.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SHOWART.RC">
@@ -164,9 +161,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WinUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PNG.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
