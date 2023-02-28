@@ -83,7 +83,7 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;jpeg.lib;jpegext.lib;tiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\$(Configuration)\bndibd.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>.\tiff\$(Configuration);.\jpeg\$(Configuration);.\jpegext\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -184,6 +184,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dib.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="jpegext\jpegext.vcxproj">
+      <Project>{bfbf4a8b-e682-4229-a7e7-045fc3bc4d9d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="jpeg\jpeg.vcxproj">
+      <Project>{b6a3543f-64ab-45e7-b5f8-69631c7a6b69}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libpng\libpng.vcxproj">
+      <Project>{d6973076-9317-4ef2-a0b8-b7a18ac0713e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="TIFF\Tiff.vcxproj">
+      <Project>{b41b0900-36fd-48d0-aa64-cd6f315dd65d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="zlib\zlibstatic.vcxproj">
+      <Project>{c885f977-2e36-3c49-9305-948a51da53af}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
