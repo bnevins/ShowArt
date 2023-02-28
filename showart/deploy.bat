@@ -1,5 +1,5 @@
 REM copy ..\..\dist\*.* "C:\Program Files\Elf\Showart"
-set target=c:\temp
+set target=C:\apps\Elf\Showart
 echo %target%
 copy e:\dev\cpp\win\showart\Debug\Showartd.exe %target%
 copy e:\dev\cpp\win\showart\Release\Showart.exe %target%
