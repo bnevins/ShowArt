@@ -77,6 +77,7 @@ BOOL DibEntry::Set(const CString& name, bool autodel)
 
 	if(!fs->Exists())
 		return FALSE;
+
 	// BUGFIX!!!  Feb 2023 if there are thousands of files this REALLY slowed things down.  AND time was never used!!!!
 	//long time = fs->Timestamp();
 	
