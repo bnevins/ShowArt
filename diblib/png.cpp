@@ -2,26 +2,15 @@
 #include "png.h"
 #include "pngdecoder.h"
 
-#define huge
-
-
 BYTE huge* Png2Dib(LPCTSTR filename)
 {
-	png thePng(filename);
-	return (BYTE*)thePng.getDibBits();
-}
-
-png::png(LPCTSTR fname) : filename(fname)
-{
-
-	//if (ReadFileIntoMemory())
-		//GetDibBits();
+	void* dibData = NULL;
+	DWORD dibSize = 0;
+	PNG_IMAGE_HEADER imageHeader;
 
 	ReadPngFile(filename, &dibData, &dibSize, &imageHeader);
+	return (BYTE*)dibData;
 }
-
-void* png::getDibBits() { return dibData; }
-DWORD png::getDibSize() { return dibSize;  }
 
 
 

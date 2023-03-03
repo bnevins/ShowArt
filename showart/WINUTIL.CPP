@@ -11,6 +11,8 @@ static char THIS_FILE[]=__FILE__;
 void ListFilesInDirectory(LPCTSTR dirName, CStringArray& filepaths )
 {
 	// BUG ALERT FIXME  assumes jpg only?
+	// FIXME
+
 	ASSERT( dirName != NULL );
 	CFileFind finder;
 	CString wildcard( dirName );
