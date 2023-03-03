@@ -91,6 +91,7 @@
       <ProgramDatabaseFile>.\..\lib/bndibd.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <CustomBuildStep>
       <Outputs>..\lib\bndibd.lib;%(Outputs)</Outputs>
@@ -143,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="crc.cpp" />
     <ClCompile Include="Dib.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_WINDOWS</PreprocessorDefinitions>
@@ -165,6 +167,10 @@
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_WINDOWS</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="png.cpp" />
+    <ClCompile Include="pngcmn.cpp" />
+    <ClCompile Include="pngdecoder.cpp" />
+    <ClCompile Include="pngencoder.cpp" />
     <ClCompile Include="utils.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">WIN32;_DEBUG;_WINDOWS</PreprocessorDefinitions>
@@ -176,9 +182,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Studio\VC98\Include\BASETSD.H" />
     <ClInclude Include="..\..\Include\DIB.H" />
+    <ClInclude Include="crc.h" />
     <ClInclude Include="Dibpriv.h" />
     <ClInclude Include="jpegext\jpegext.h" />
     <ClInclude Include="jpegext\JpegRotater.h" />
+    <ClInclude Include="png.h" />
+    <ClInclude Include="pngcmn.h" />
+    <ClInclude Include="pngdecoder.h" />
+    <ClInclude Include="pngencoder.h" />
     <ClInclude Include="stdwin.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

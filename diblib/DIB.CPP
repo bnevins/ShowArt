@@ -11,7 +11,8 @@
 #include "JpegRotater.h"
 #include "utils.h"
 #include "JpegWriter.h"
-#include <gdiplus.h>
+#include "png.h"
+//#include <gdiplus.h>
 
 //using namespace Gdiplus;
 
@@ -58,12 +59,9 @@ void	Delay(int msecs)
 
 // FOO FOO FOO
 BYTE huge* testPNG(LPCTSTR fname) {
-	FILE* infile = fopen(fname, "rb");
 
-	
-
+	png thePng(fname);
 	return NULL;
-
 }
 
 
