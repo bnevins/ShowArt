@@ -15,6 +15,6 @@
 #else
 	#include <strstrea.h>
 #endif
-
+#include <gdiplus.h>
 typedef unsigned char BYTE;
 

@@ -104,6 +104,7 @@ BOOL CShowartApp::InitInstance()
 	// hard to test and debug
 
 	TRACE("%s -- InitInstance!!\n", __argv[0]);
+
 	SetDialogBkColor();        // set dialog background color to gray
 	SetRegistryKey(_T("Elf Software"));
 
@@ -146,7 +147,14 @@ BOOL CShowartApp::InitInstance()
 	// Enable drag/drop open
 	m_pMainWnd->DragAcceptFiles();
 	SetupShellRegistry();
+	Gdiplus::GdiplusStartup(&m_gdiplusToken, &m_gdiplusStartupInput, NULL);
 	return TRUE;
+}
+
+int CShowartApp::ExitInstance() 
+{
+	Gdiplus::GdiplusShutdown(m_gdiplusToken);
+	return CWinApp::ExitInstance();
 }
 
 // Copy and paste from CWinApp in order to change one line.

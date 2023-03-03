@@ -11,6 +11,9 @@
 #include "JpegRotater.h"
 #include "utils.h"
 #include "JpegWriter.h"
+#include <gdiplus.h>
+
+//using namespace Gdiplus;
 
 //#ifndef _DLL
 //#error Setup for use as DLL only!!!!
@@ -52,8 +55,19 @@ void	Delay(int msecs)
 }	
 #endif
 
-int CArt::showErrorsInMessageBox = FALSE; 
 
+// FOO FOO FOO
+BYTE huge* testPNG(LPCTSTR fname) {
+	FILE* infile = fopen(fname, "rb");
+
+	
+
+	return NULL;
+
+}
+
+
+int CArt::showErrorsInMessageBox = FALSE; 
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -294,8 +308,9 @@ void	Dib::Read(LPCTSTR szFileName)
 			Jpg2Dib(fileName);	break;
 		case bmp:
 	   		Bmp2Dib(fileName);	break;			 				 	  
-		case tiff:	   			
-			Tiff2Dib(fileName);	break;
+		case tiff:	
+			testPNG(fileName); break;
+			//Tiff2Dib(fileName);	break;
 		case gif:				 
 			Gif2Dib(fileName);	break;
 		default:

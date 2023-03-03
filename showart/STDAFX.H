@@ -10,6 +10,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <gdiplus.h>
 using namespace std;
 typedef vector<int> INTVECTOR;
 

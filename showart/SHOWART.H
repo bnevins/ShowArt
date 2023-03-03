@@ -50,7 +50,9 @@ public:
 	BOOL OnDDECommand(LPTSTR lpszCommand);
 // Overrides
 	virtual BOOL InitInstance();
-    BOOL DoPromptFileName(LPSTR fileName, UINT nIDSTitle, DWORD lFlags,
+	virtual int ExitInstance();
+
+	BOOL DoPromptFileName(LPSTR fileName, UINT nIDSTitle, DWORD lFlags,
 						BOOL bOpenFileDialog, CDocTemplate* pTemplate);
 	BOOL ProcessShellCommand(CCommandLineInfo& rCmdInfo);
     //virtual int ExitInstance();
@@ -89,6 +91,10 @@ protected:
 private:
 	static const CString True;
 	static const CString False;
+	
+	// GDI+ stuffs
+	ULONG_PTR m_gdiplusToken;
+	Gdiplus::GdiplusStartupInput m_gdiplusStartupInput;
 };
 
 /////////////////////////////////////////////////////////////////////////////
