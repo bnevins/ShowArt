@@ -43,6 +43,7 @@ extern HINSTANCE GetDllInstance();
 #define GIF_SUPPORT
 #define JPG_SUPPORT
 #define TIFF_SUPPORT
+#define PNG_SUPPORT
 
 #ifdef MIN
 #undef MIN
@@ -52,6 +53,7 @@ extern HINSTANCE GetDllInstance();
 
 extern 	   BYTE huge * Gif2Dib(LPCTSTR filename);
 extern "C" BYTE huge * Tiff2Dib(LPCTSTR filename);
+extern 	   BYTE huge*  Png2Dib(LPCTSTR filename);
 
 #ifdef JPG_SUPPORT
 extern "C"

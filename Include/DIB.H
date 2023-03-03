@@ -147,7 +147,8 @@ private:
 	void			Gif2Dib(LPCTSTR filename);
 	void			Tiff2Dib(LPCTSTR filename);
 	void			Jpg2Dib(LPCTSTR filename);
-};				   	 	  				 
+	void			Png2Dib(LPCTSTR filename);
+};
 
 #if 0
 class BNEXPORT DibXY : public Dib

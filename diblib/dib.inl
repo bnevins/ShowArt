@@ -125,6 +125,13 @@ INLINE void Dib::Jpg2Dib(LPCTSTR filename)
 
 /////////////////////////////////////////////////////////////////////////
 
+INLINE void Dib::Png2Dib(LPCTSTR filename)
+{
+	lpDib = ::Png2Dib(filename);
+}
+
+/////////////////////////////////////////////////////////////////////////
+
 INLINE const HPALETTE Dib::GetPal() const	  	
 { 
 	return newPal; 

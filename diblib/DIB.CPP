@@ -38,10 +38,18 @@ BYTE huge* Gif2Dib(LPCTSTR filename)
 
 #ifndef JPG_SUPPORT
 // otherwise link in jpeg library...
-extern "C" BYTE huge* Jpg2Dib(LPCTSTR filename, LPCTSTR outName, double scalingFactor, int showErrorsInMessageBox)
-{			
-	 return NULL;
-}	 
+extern "C" BYTE huge * Jpg2Dib(LPCTSTR filename, LPCTSTR outName, double scalingFactor, int showErrorsInMessageBox)
+{
+	return NULL;
+}
+#endif
+
+#ifndef PNG_SUPPORT
+// otherwise link in jpeg library...
+extern  BYTE huge * Png2Dib(LPCTSTR filename)
+{
+	return NULL;
+}
 #endif
 
 #define Delay(x)
@@ -55,14 +63,6 @@ void	Delay(int msecs)
 		;
 }	
 #endif
-
-
-// FOO FOO FOO
-BYTE huge* testPNG(LPCTSTR fname) {
-
-	png thePng(fname);
-	return (BYTE*)thePng.getDibBits();
-}
 
 
 int CArt::showErrorsInMessageBox = FALSE; 
@@ -312,7 +312,7 @@ void	Dib::Read(LPCTSTR szFileName)
 		case tiff:
 			Tiff2Dib(fileName);	break;
 		case pngtype:
-			lpDib = testPNG(fileName); break;
+			Png2Dib(fileName); break;
 		case gif:
 			Gif2Dib(fileName);	break;
 		default:
