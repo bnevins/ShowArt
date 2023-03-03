@@ -1,4 +1,5 @@
 #include "stdwin.h"
+#include <windowsx.h> // GlobalAllocPointer in here
 #include "pngdecoder.h"
 #include "crc.h"
 
@@ -241,6 +242,7 @@ LONG Uncompress(
 	return  PNG_FAIL;
 }
 
+
 /*
  Creates empty DIB base on png image header and palette data
 */
@@ -298,7 +300,9 @@ LONG CreateEmptyDIB(
 	DWORD dwPaletteSize = DIBPalleteSize(&bmi);
 	DWORD dwDIBSize = bmi.bmiHeader.biSize + dwPaletteSize + DIBCalcBitsSize(&bmi);
 
-	void* pvDIBData = malloc(dwDIBSize);
+	// WBN -- use the alloc function that matches the Free in dib.cpp
+	void* pvDIBData = GlobalAllocPtr(GMEM_MOVEABLE | GMEM_SHARE, dwDIBSize);
+	//void* pvDIBData = malloc(dwDIBSize);
 	if (pvDIBData == NULL)
 		return PNG_NOT_ENOUGH_MEMORY;
 
@@ -827,7 +831,7 @@ LONG ReadPngFile(
 			return PNG_NOT_PNG;
 		}
 
-		// Allocate memort for reading entire file
+		// Allocate memory for reading entire file
 		pFileData = (LPBYTE)malloc(dwFileSize);
 		if (pFileData == NULL)
 		{

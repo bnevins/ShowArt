@@ -577,7 +577,7 @@ BOOL CShowartApp::DoPromptFileName(LPSTR fileName, UINT nIDSTitle, DWORD lFlags,
     // manually adding a (multiple) extension   BN 12/93
 	CString strFilter = "Art Files";
 	strFilter += (char) '\0';
-	strFilter += "*.bmp;*.dib;*.gif;*.tif;*.jpg";
+	strFilter += "*.bmp;*.dib;*.gif;*.tif;*.jpg;*.png";
 	strFilter += (char) '\0';
 	// End Change -- BN
 	CString strDefault;

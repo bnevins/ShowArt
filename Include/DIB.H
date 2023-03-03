@@ -18,7 +18,7 @@
 
 enum ArtType
 {
-	jpeg, tiff, bmp, gif, unknown
+	jpeg, tiff, bmp, gif, pngtype, unknown
 };
 
 class	BNEXPORT CArt

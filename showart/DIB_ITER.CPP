@@ -10,7 +10,7 @@
 #include "Filename.h"
 #include ".\dib_iter.h"
 
-static LPCTSTR	ART_TYPES[] = { "JPG", "GIF", "TIF", "BMP" };
+static LPCTSTR	ART_TYPES[] = { "JPG", "GIF", "TIF", "BMP", "PNG" };
 const int		NUM_ART_TYPES = sizeof(ART_TYPES) / sizeof(*ART_TYPES);
 
 //////////////////////////////////////////////////////////////////////////

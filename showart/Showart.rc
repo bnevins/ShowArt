@@ -57,12 +57,14 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "RES\\SHOWART.ICO"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Bitmap
 //
 
 IDR_MAINFRAME           BITMAP                  "RES\\TOOLBAR.BMP"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -860,6 +862,7 @@ BEGIN
     IDR_TIFFTYPE            "\nTIFF\nTIFF Document\nTIFF Files (*.tif)\n.tif\nTIFFFileType\nTIFF File Type"
     IDR_GIFTYPE             "\nGIF\nGIF Document\nGIF Files (*.gif)\n.gif\nGIFFileType\nGIF File Type"
     IDR_JPEGTYPE            "\nJPG\nJPEG Document\nJPEG Files (*.jpg)\n.jpg\nJPEGFileType\nJPEG File Type"
+    IDR_PNGTYPE             "\nPNG\nPNG Document\nPNG Files (*.png)\n.png\nPNGFileType\nPNG File Type"
 END
 
 STRINGTABLE

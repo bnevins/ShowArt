@@ -12,6 +12,8 @@
 #define IDR_BMPTYPE1                    6
 #define IDR_JPEGTYPE                    7
 #define IDR_BMPTYPE4                    7
+#define IDR_JPEGTYPE2                   8
+#define IDR_PNGTYPE                     8
 #define IDD_ABOUTBOX                    100
 #define IDC_CHECK1                      102
 #define IDC_CHECK2                      103

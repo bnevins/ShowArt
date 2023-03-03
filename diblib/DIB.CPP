@@ -211,8 +211,11 @@ ArtType Dib::GetType()
 	else if(!lstrcmpi(ext, "GIF"))
 		return gif;
 				
-	else if(!lstrcmpi(ext, "JPG") || !lstrcmpi(ext, "JPEG"))
+	else if (!lstrcmpi(ext, "JPG") || !lstrcmpi(ext, "JPEG"))
 		return jpeg;
+
+	else if (!lstrcmpi(ext, "PNG"))
+		return pngtype;
 
 	return unknown;
 }
@@ -306,10 +309,11 @@ void	Dib::Read(LPCTSTR szFileName)
 			Jpg2Dib(fileName);	break;
 		case bmp:
 	   		Bmp2Dib(fileName);	break;			 				 	  
-		case tiff:	
+		case tiff:
+			Tiff2Dib(fileName);	break;
+		case pngtype:
 			lpDib = testPNG(fileName); break;
-			//Tiff2Dib(fileName);	break;
-		case gif:				 
+		case gif:
 			Gif2Dib(fileName);	break;
 		default:
 			return; // FIXME ?????
