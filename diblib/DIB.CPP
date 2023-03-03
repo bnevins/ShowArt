@@ -61,7 +61,7 @@ void	Delay(int msecs)
 BYTE huge* testPNG(LPCTSTR fname) {
 
 	png thePng(fname);
-	return NULL;
+	return (BYTE*)thePng.getDibBits();
 }
 
 
@@ -307,7 +307,7 @@ void	Dib::Read(LPCTSTR szFileName)
 		case bmp:
 	   		Bmp2Dib(fileName);	break;			 				 	  
 		case tiff:	
-			testPNG(fileName); break;
+			lpDib = testPNG(fileName); break;
 			//Tiff2Dib(fileName);	break;
 		case gif:				 
 			Gif2Dib(fileName);	break;

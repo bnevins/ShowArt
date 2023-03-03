@@ -11,8 +11,8 @@ png::png(LPCTSTR fname) : filename(fname)
 	ReadPngFile(filename, &dibData, &dibSize, &imageHeader);
 }
 
-inline 	void* png::getDibBits() { return dibData; }
-inline DWORD png::getDibSize() { return dibSize;  }
+void* png::getDibBits() { return dibData; }
+DWORD png::getDibSize() { return dibSize;  }
 
 #if 0
 BOOL png::ReadFileIntoMemory()
