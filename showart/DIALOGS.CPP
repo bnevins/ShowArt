@@ -31,6 +31,7 @@ PreferencesDialog::PreferencesDialog(CWnd* pParent /*=NULL*/)
 	defaultDir				= Prefs.defaultDir;
 	useDefaultDir			= Prefs.useDefaultDir;
 	safeCopyMode			= Prefs.safeCopyMode;
+	autoCopyPng				= Prefs.autoCopyPng;
 }
 
 void PreferencesDialog::DoDataExchange(CDataExchange* pDX)
@@ -48,6 +49,7 @@ void PreferencesDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_DEFAULT_DIR, defaultDir);
 	DDX_Check(pDX, IDC_DEFAULT_DIR_ALWAYS_OPEN, useDefaultDir);
 	DDX_Check(pDX, IDC_SAFECOPY, safeCopyMode);
+	DDX_Check(pDX, IDC_AUTO_WRITE_PNG, autoCopyPng);
 }
 
 BEGIN_MESSAGE_MAP(PreferencesDialog, CDialog)

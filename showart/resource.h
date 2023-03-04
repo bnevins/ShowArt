@@ -179,6 +179,7 @@
 #define IDC_BUTTON1                     221
 #define IDC_USE_BATCH_FILE              222
 #define IDC_SAFECOPY                    223
+#define IDC_AUTO_WRITE_PNG              224
 #define ID_VIEW_FULLSCREEN              32769
 #define ID_VIEW_TESTTETST               32770
 #define ID_VIEW_FITTOWINDOW             32771
@@ -221,9 +222,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        120
+#define _APS_NEXT_RESOURCE_VALUE        121
 #define _APS_NEXT_COMMAND_VALUE         32818
-#define _APS_NEXT_CONTROL_VALUE         223
+#define _APS_NEXT_CONTROL_VALUE         225
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

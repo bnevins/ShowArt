@@ -6,4 +6,7 @@
     <LocalDebuggerEnvironment>PATH=%PATH%;$(ProjectDir)..\diblib\$(Configuration)
 $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   </PropertyGroup>
+  <PropertyGroup>
+    <RESOURCE_FILE>SHOWART.RC</RESOURCE_FILE>
+  </PropertyGroup>
 </Project>

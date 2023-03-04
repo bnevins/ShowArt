@@ -24,6 +24,7 @@ public:
 	CString			defaultDir;
 	BOOL			useDefaultDir;
 	BOOL			safeCopyMode;
+	BOOL			autoCopyPng;
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 	virtual BOOL OnInitDialog();

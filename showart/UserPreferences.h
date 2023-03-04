@@ -21,6 +21,7 @@ public:
 	BOOL	useDefaultDir;
 	BOOL	safeCopyMode;
 	CString	defaultDir;
+	BOOL	autoCopyPng;
 	UserPreferences();
 	~UserPreferences();
 	void	Read();

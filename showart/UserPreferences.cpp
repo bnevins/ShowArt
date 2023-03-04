@@ -27,6 +27,7 @@ UserPreferences::UserPreferences()
 	useDefaultDir		= FALSE;
 	defaultDir			= "";
 	safeCopyMode		= FALSE;
+	autoCopyPng			= FALSE;
 }	
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +46,7 @@ void UserPreferences::Read()
 	defaultDir			= AfxGetApp()->GetProfileString(sectName, "UserDefaultOpenDir", NULL);
 	superSkipNum		= AfxGetApp()->GetProfileInt(sectName, "DefaultSuperSkip",		8);
 	safeCopyMode		= AfxGetApp()->GetProfileInt(sectName, "SafeCopyMode",			FALSE);
+	autoCopyPng			= AfxGetApp()->GetProfileInt(sectName, "AutoCopyPng",			FALSE);
 	// if none openDir[0] = 0.....
 	lstrcpy(openDir, AfxGetApp()->GetProfileString(sectName, "DefaultOpenDir", NULL));
 	lstrcpy(saveDir, AfxGetApp()->GetProfileString(sectName, "DefaultSaveDir", NULL));
@@ -82,6 +84,7 @@ void UserPreferences::Write()
 	pApp->WriteProfileString(sectName,	"DefaultSaveDir",		saveDir);
 	pApp->WriteProfileInt(sectName,		"DefaultSuperSkip",		superSkipNum);
 	pApp->WriteProfileInt(sectName,		"SafeCopyMode",			safeCopyMode);
+	pApp->WriteProfileInt(sectName,		"AutoCopyPng",			autoCopyPng);
 
 	keys.Write();
 }										   					  				 

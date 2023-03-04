@@ -766,6 +766,7 @@ void CShowartApp::OnFilePreferences()
 		Prefs.useDefaultDir			= dlg.useDefaultDir;
 		Prefs.defaultDir			= dlg.defaultDir;
 		Prefs.safeCopyMode			= dlg.safeCopyMode;
+		Prefs.autoCopyPng			= dlg.autoCopyPng;
 		Prefs.Write();
 		
 		if(dlg.m_sortChanged)
