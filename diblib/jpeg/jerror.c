@@ -74,6 +74,7 @@ error_exit (j_common_ptr cinfo)
   /* Let the memory manager delete any temp files before we die */
   jpeg_destroy(cinfo);
 
+  // Weird Windows exception can't be caught .  WBN March 2023
   Win32Throw();
   exit(EXIT_FAILURE);	// shouldn't happen....
 }

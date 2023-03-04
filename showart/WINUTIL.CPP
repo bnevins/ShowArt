@@ -10,13 +10,13 @@ static char THIS_FILE[]=__FILE__;
 
 void ListFilesInDirectory(LPCTSTR dirName, CStringArray& filepaths )
 {
-	// BUG ALERT FIXME  assumes jpg only?
+	// BUG ALERT FIXME  Instead of *.* -- get bmp,tif,jpg,png, etc
 	// FIXME
 
 	ASSERT( dirName != NULL );
 	CFileFind finder;
 	CString wildcard( dirName );
-	wildcard += _T("\\*.jpg");
+	wildcard += _T("\\*.*");
 	BOOL working = finder.FindFile( wildcard );
 	while ( working )
 	{

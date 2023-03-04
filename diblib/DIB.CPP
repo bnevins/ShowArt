@@ -729,6 +729,7 @@ void Dib::WriteJpg(LPCTSTR outfilename, int jpegQuality)
 {
 	int			headerSize	= HeaderSize();
 	BYTE huge*	lpPal		= lpDib + headerSize;
+	// FIXME BUG palSize isn't used but it can't be right!  lpDibBits should be >= lpPal!!!
 	int			palSize		= lpPal - lpDibBits; // usually 0
 
 	JpegWriter writer(lpDib, lpDibBits, outfilename, jpegQuality);
