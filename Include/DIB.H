@@ -115,6 +115,7 @@ public:
 	void			ClearAll();
 	LPCTSTR			GetFileName();
 	ArtType			GetType();
+	WORD			NumColorBits();
 #ifdef _DEBUG
 	void			DumpHeader(ostream* outStream = NULL);
 #endif

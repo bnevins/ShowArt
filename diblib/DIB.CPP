@@ -914,6 +914,32 @@ HGLOBAL Dib::GetHandleCopy()
 	return hCopy;
 }
 
+WORD Dib::NumColorBits()
+{
+	ASSERT(lpDib);
+
+	int 		bits;
+	LPBITMAPINFOHEADER	lpbi;
+	LPBITMAPCOREHEADER	lpbc;
+
+	lpbi = ((LPBITMAPINFOHEADER)lpDib);
+	lpbc = ((LPBITMAPCOREHEADER)lpDib);
+
+	/*	With the BITMAPINFO format headers, the size of the palette
+	 *	is in biClrUsed, whereas in the BITMAPCORE - style headers, it
+	 *	is dependent on the bits per pixel ( = 2 raised to the power of
+	 *	bits/pixel).
+	 */
+	if (lpbi->biSize != sizeof(BITMAPCOREHEADER)) {
+		if (lpbi->biClrUsed != 0)
+			return (WORD)lpbi->biClrUsed;
+		bits = lpbi->biBitCount;
+	}
+	else
+		bits = lpbc->bcBitCount;
+	
+	return bits;
+}
 /****************************************************************************
  *									    *
  *  FUNCTION   : Dib::NumColors()
@@ -927,28 +953,8 @@ HGLOBAL Dib::GetHandleCopy()
 
 WORD Dib::NumColors()
 {	 				   
-	ASSERT(lpDib);
+	WORD bits = NumColorBits();
 	
-	int 		bits;
-	LPBITMAPINFOHEADER	lpbi;
-	LPBITMAPCOREHEADER	lpbc;
-	
-	lpbi = ((LPBITMAPINFOHEADER) lpDib);
-	lpbc = ((LPBITMAPCOREHEADER) lpDib);
-								 
-    /*	With the BITMAPINFO format headers, the size of the palette
-     *	is in biClrUsed, whereas in the BITMAPCORE - style headers, it
-     *	is dependent on the bits per pixel ( = 2 raised to the power of
-     *	bits/pixel).
-     */
-	if (lpbi->biSize != sizeof(BITMAPCOREHEADER)) {
-		if (lpbi->biClrUsed != 0)
-			return (WORD) lpbi->biClrUsed;
-		bits = lpbi->biBitCount;
-		}
-	else 
-		bits = lpbc->bcBitCount;
-
 	switch (bits) {
   case 1:
 		return 2;

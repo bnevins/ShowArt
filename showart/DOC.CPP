@@ -318,6 +318,18 @@ BOOL CShowartDoc::OnSaveDocument(LPCTSTR lpszPathName)
 	if(!lpszPathName || !*lpszPathName)
 		return FALSE;
 
+	Dib& dib = *GetDib();
+	WORD numBits = dib.NumColorBits();
+
+	// JPEG library I have will throw an Exception if bits isn't 8 or 24!
+	if (numBits != 8 && numBits != 24)
+	{
+		CString message;
+		message.Format("The JPEG Library can only save images with 8 or 24 bits per pixel.  This image has %u bit%s.  Sorry!", numBits, numBits == 1 ? "" : "s");
+		AfxMessageBox(message);
+		return FALSE;
+	}
+
 	return GetDib()->Write(lpszPathName, Prefs.jpegQuality);
 }
 
