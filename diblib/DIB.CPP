@@ -1,8 +1,4 @@
 #include "stdwin.h"
-
-//#include <windows.h>
-//#include <assert.h>
-//#include <strstrea.h>
 #include "stdio.h"
 #include "resource.h"
 #include "dib.h" 
@@ -12,7 +8,6 @@
 #include "utils.h"
 #include "JpegWriter.h"
 #include "png.h"
-//#include <gdiplus.h>
 
 //using namespace Gdiplus;
 
@@ -664,10 +659,10 @@ BOOL Dib::Write(LPCTSTR szFileName, int jpegQuality)
 		{
 			WriteJpg(szFileName, jpegQuality);
 		}
-		else
+		else 
 		{
-			// default -- write out a jpeg
-			WriteJpg(szFileName, jpegQuality);
+			// TIFF or PNG -- save as jpg
+			WriteJpgFromOther(szFileName, jpegQuality);
 		}
 	}
 	catch(...)
@@ -722,18 +717,25 @@ void	Dib::WriteBMP(LPCTSTR outfilename)
 
 	_lclose (hFile) ;
 }
-	
+
 ///////////////////////////////////////////////////////////////////////	
 
 void Dib::WriteJpg(LPCTSTR outfilename, int jpegQuality)
 {
-	int			headerSize	= HeaderSize();
-	BYTE huge*	lpPal		= lpDib + headerSize;
-	// FIXME BUG palSize isn't used but it can't be right!  lpDibBits should be >= lpPal!!!
-	int			palSize		= lpPal - lpDibBits; // usually 0
+	int			headerSize = HeaderSize();
+	BYTE huge* lpPal = lpDib + headerSize;
 
 	JpegWriter writer(lpDib, lpDibBits, outfilename, jpegQuality);
 	writer.write();
+}
+
+///////////////////////////////////////////////////////////////////////	
+
+void Dib::WriteJpgFromOther(LPCTSTR outfilename, int jpegQuality)
+{
+	CString newname;
+	ChangeFileExtension(newname, outfilename, ".jpg");
+	WriteJpg(newname, jpegQuality);
 }
 
 

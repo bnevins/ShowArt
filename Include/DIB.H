@@ -125,6 +125,7 @@ protected:
 private:
 	void			WriteBMP(LPCTSTR outfilename);
 	void			WriteJpg(LPCTSTR outfilename, int jpegQuality);
+	void			WriteJpgFromOther(LPCTSTR outfilename, int jpegQuality);
 	void			ReLoad();
 	static double	scalingFactor;
 	TCHAR			*fileName;  // unicode

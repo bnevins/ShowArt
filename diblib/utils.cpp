@@ -66,3 +66,21 @@ boolean isBMP(const char* path)
 	return false;
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+void  ChangeFileExtension(CString& newName, LPCTSTR oldFilename, LPCTSTR newExtension)
+{
+	// String handling in C/C++ BLOWS!!!
+	newName = oldFilename;
+
+	int lastDot = newName.ReverseFind('.');
+
+	if (lastDot >= 0)
+	{
+		newName = newName.Left(lastDot);
+	}
+	// else no extension so we will add one
+	newName += ".jpg";
+}
+
+

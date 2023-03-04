@@ -6,4 +6,4 @@ extern HANDLE	CopyHandle(HANDLE h);
 extern BOOL		IsDir(const CString& name);
 extern void		ListFilesInDirectory(LPCTSTR dirName, CStringArray& filepaths );
 extern BOOL		Exists(LPCTSTR path);
-extern CString NextFileName(CString&  path);
+extern CString  NextFileName(CString&  path);

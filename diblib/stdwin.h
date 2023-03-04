@@ -16,5 +16,7 @@
 	#include <strstrea.h>
 #endif
 #include <gdiplus.h>
+#include <atlstr.h>
+
 typedef unsigned char BYTE;
 
