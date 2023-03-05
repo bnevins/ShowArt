@@ -116,7 +116,7 @@ public:
 	DWORD			ImageSize();
 	void			Read(LPCTSTR szFileName);
 	void			ClearAll();
-	void			AutoSavePng(CString& newname);
+	void			AutoSavePng(CAtlString& newname);
 	LPCTSTR			GetFileName();
 	ArtType			GetType();
 	WORD			NumColorBits();

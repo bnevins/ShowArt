@@ -1755,7 +1755,7 @@ bool Dib::rotate(int numQuarterTurnsCW)
 	}
 }
 // if CString isn't empty - then we saved a file!
-BNEXPORT void Dib::AutoSavePng(CString& newname)
+BNEXPORT void Dib::AutoSavePng(CAtlString& newname)
 {
 	// Preferences are set to auto-save
 	// 1.  Is it a png?
@@ -1766,7 +1766,10 @@ BNEXPORT void Dib::AutoSavePng(CString& newname)
 	ChangeFileExtension(newname, getFilename(), ".jpg");
 	
 	if (FileExists(newname))
+	{
+		newname = "";
 		return;
+	}
 
 	// OK -- let's do it
 	// FIXME passdown JPEG Quality

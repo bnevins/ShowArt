@@ -68,7 +68,7 @@ boolean isBMP(const char* path)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-void  ChangeFileExtension(CString& newName, LPCTSTR oldFilename, LPCTSTR newExtension)
+void  ChangeFileExtension(CAtlString& newName, LPCTSTR oldFilename, LPCTSTR newExtension)
 {
 	// String handling in C/C++ BLOWS!!!
 	newName = oldFilename;
