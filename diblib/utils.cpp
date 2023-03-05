@@ -83,4 +83,14 @@ void  ChangeFileExtension(CString& newName, LPCTSTR oldFilename, LPCTSTR newExte
 	newName += ".jpg";
 }
 
+bool FileExists(LPCTSTR filename)
+{
+	// in Java --> file.exists() !!!
+	WIN32_FIND_DATAA fd = { 0 };
+	HANDLE hFound = FindFirstFileA(filename, &fd);
+	bool retval = hFound != INVALID_HANDLE_VALUE;
+	FindClose(hFound);
+
+	return retval;
+}
 

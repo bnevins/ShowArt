@@ -46,6 +46,8 @@ protected:
 	void		OK(int newOK);
 	void		Width(int newW);
 	void		Height(int newH);
+	void		setFilename(LPCTSTR fname);
+	LPCTSTR		getFilename();
 		  						
 	// KEEP THIS ONE PROTECTED!!!!!!!!
 	virtual void Show_(HDC	hdc, int x, int y, int w, int h, DWORD rop) = 0;
@@ -55,6 +57,7 @@ private:
 	WORD		height;
 	int			ok;
 	HWND		hwndOwner;		// window that "owns" the CArt, if any - for getting HDC's...  
+	LPCTSTR		filename;
 };								  		   		 		  
 
  class	BNEXPORT DDB : public CArt
@@ -113,6 +116,7 @@ public:
 	DWORD			ImageSize();
 	void			Read(LPCTSTR szFileName);
 	void			ClearAll();
+	void			AutoSavePng(CString& newname);
 	LPCTSTR			GetFileName();
 	ArtType			GetType();
 	WORD			NumColorBits();

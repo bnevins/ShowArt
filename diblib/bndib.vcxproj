@@ -181,7 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Studio\VC98\Include\BASETSD.H" />
-    <ClInclude Include="..\..\Include\DIB.H" />
+    <ClInclude Include="..\Include\DIB.H" />
     <ClInclude Include="crc.h" />
     <ClInclude Include="Dibpriv.h" />
     <ClInclude Include="jpegext\jpegext.h" />

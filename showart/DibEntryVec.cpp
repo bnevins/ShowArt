@@ -109,7 +109,21 @@ Dib*& DibEntry::Load()
 		
 		try 
 		{
-			pDib = new Dib(fullPathName);	// indirectly calls this func. recursively!
+ 			pDib = new Dib(fullPathName);	// indirectly calls this func. recursively!
+			
+			if (Prefs.autoCopyPng)
+			{
+				CString jpgname;
+				//pDib->AutoSavePng(jpgname);
+				pDib->GetFileName();
+
+				if (!jpgname.IsEmpty())
+				{
+					CString s;
+					s.Format("Auto-saved %s as %s", fullPathName, jpgname);
+					AfxMessageBox(s);
+				}
+			}
 			in_process = false;
 		}
 		catch(...) 

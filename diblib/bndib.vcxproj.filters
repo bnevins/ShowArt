@@ -47,9 +47,6 @@
     <ClInclude Include="..\..\..\..\Studio\VC98\Include\BASETSD.H">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\DIB.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Dibpriv.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pngencoder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Include\DIB.H">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -169,11 +169,26 @@ SIZE CArt::GetFitToScreenSize()
 
 ////////////////////////////////////////////////////////////////////////////
 
-/* static */ 
-int&	CArt::ShowErrorsInMessageBox() 
-{ 
-		return showErrorsInMessageBox;
+/* static */
+int& CArt::ShowErrorsInMessageBox()
+{
+	return showErrorsInMessageBox;
 }
+
+////////////////////////////////////////////////////////////////////////////
+
+void CArt::setFilename(LPCTSTR fname)
+{
+	filename = fname;
+}
+
+////////////////////////////////////////////////////////////////////////////
+
+LPCTSTR CArt::getFilename()
+{
+	return filename;
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 //  Dib Member Functions...
@@ -276,7 +291,8 @@ Dib::Dib()
 /* ====================================================================== */
 
 Dib::Dib(LPCTSTR filename)
-{		 			 
+{	
+	setFilename(filename);
 	ctorBefore();
 	Read(filename);
 }
@@ -307,7 +323,7 @@ void	Dib::Read(LPCTSTR szFileName)
 		case tiff:
 			Tiff2Dib(fileName);	break;
 		case pngtype:
-			Png2Dib(fileName); break;
+			Png2Dib(fileName);  break;
 		case gif:
 			Gif2Dib(fileName);	break;
 		default:
@@ -1737,4 +1753,22 @@ bool Dib::rotate(int numQuarterTurnsCW)
 		MessageBox(NULL, "Unexpected Error in Dib::Rotate", "Error", MB_ICONEXCLAMATION);
 		return false;
 	}
+}
+// if CString isn't empty - then we saved a file!
+BNEXPORT void Dib::AutoSavePng(CString& newname)
+{
+	// Preferences are set to auto-save
+	// 1.  Is it a png?
+	if (GetType() != pngtype)
+		return;
+
+	//2. Is there a jpg file already?
+	ChangeFileExtension(newname, getFilename(), ".jpg");
+	
+	if (FileExists(newname))
+		return;
+
+	// OK -- let's do it
+	// FIXME passdown JPEG Quality
+	Write(newname, 90);
 }
