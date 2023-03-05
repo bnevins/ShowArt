@@ -114,7 +114,7 @@ Dib*& DibEntry::Load()
 			if (Prefs.autoCopyPng)
 			{
 				CAtlString jpgname;
-				pDib->AutoSavePng(jpgname);
+				pDib->AutoSavePng(jpgname, Prefs.jpegQuality);
 
 				if (!jpgname.IsEmpty())
 				{
