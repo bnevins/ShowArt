@@ -288,6 +288,13 @@ LPCTSTR CShowartDoc::GetFileName()
 
 /////////////////////////////////////////////////////////////////////////////
 
+void CShowartDoc::NothingToSaveMessageBox()
+{
+	AfxMessageBox("Nothing to save!  Open an image file first.", MB_ICONEXCLAMATION);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
 void CShowartDoc::OnFileSave() 
 {
 	// make sure the filename is set in the super-class
@@ -296,10 +303,13 @@ void CShowartDoc::OnFileSave()
 
 	LPCTSTR name = GetFileName();
 
-	if(name)
+	if (name)
+	{
 		SetPathName(name);
-
-	CDocument::OnFileSave();
+		CDocument::OnFileSave();
+	}
+	else
+		NothingToSaveMessageBox();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -307,7 +317,10 @@ void CShowartDoc::OnFileSave()
 #pragma message ("TEMP CODE HERE--> " __FILE__ )
 void CShowartDoc::OnFileSaveAs() 
 {
-	CDocument::OnFileSaveAs();
+	if(GetDib() == pNullDib)
+		NothingToSaveMessageBox();
+	else
+		CDocument::OnFileSaveAs();
 }
 
 

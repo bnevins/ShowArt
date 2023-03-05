@@ -1,3 +1,9 @@
 Load in a 4 color png.  Hit save.  It says "Only 8 and 24 bit BMP files are supported.  Then it writes an empty file and crashes/exits 
 
-PROBLEM:  Jpeg library-save only supports 8 or 24 bit bitmaps.  SO -- check bitDepth BEFORE calling save!!!!!
+FIXED  PROBLEM:  Jpeg library-save only supports 8 or 24 bit bitmaps.  SO -- check bitDepth BEFORE calling save!!!!!
+
+----------------------------------------------------------------------------------------
+BUG: file save/save as with no images loaded crashes
+FIXED: Check for condition and put up a message box.  Graying the save and save as would have been more elegant but I don't want to spend the time figuring it out!
+-----------------------------------------------------------------------------------------
+

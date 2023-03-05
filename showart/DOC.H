@@ -54,6 +54,7 @@ private:
 	void Invalidate();
 	void OnRotate(int numQuarterTurns);
 	void OnUpdateRotate(CCmdUI* pCmdUI);
+	void NothingToSaveMessageBox();
 	int dibIndex;
 	static int superMoveNumChars;
 	static CString superMoveTarget;
