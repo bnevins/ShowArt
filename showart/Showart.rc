@@ -248,7 +248,7 @@ FONT 11, "Lucida Handwriting", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
     LTEXT           "SHOWART Version 8.0\nJune 2019",IDC_VERSION,34,9,132,33,SS_SUNKEN
-    LTEXT           "Copyright © 1993 - 2019",IDC_STATIC,33,50,119,8
+    LTEXT           "Copyright © 1993 - 2023",IDC_STATIC,33,50,119,8
     DEFPUSHBUTTON   "OK",IDOK,176,6,32,14,WS_GROUP
     CTEXT           "By Byron Nevins",IDC_STATIC,67,63,109,8
 END
