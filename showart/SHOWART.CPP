@@ -460,6 +460,7 @@ bool CShowartApp::IsOneFilename(const char * name)
 	while(*name)
 		name++;
 
+	// first case -- we're testing for the SECOND zero
 	if(*(name + 1) == 0)
 		return true;
 	
@@ -496,8 +497,6 @@ CString CShowartApp::ParseFilenames(const char * mega, CStringArray & names)
 		names.Add(s);
 		px += strlen(px) + 1;
 	}
-
-	//return mega;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -536,12 +535,12 @@ void CShowartApp::OnFileOpen()
 
 	if(num < 1)
 		return;
-	BOOL YESFLAG = TRUE;
 
-	if(num == 1 && YESFLAG) {
-		ListFilesInDirectory( dirName, names );
+	if (Prefs.openAllFilesInFolder)
+	{
+		names.RemoveAll();
+		ListFilesInDirectory(dirName, names);
 	}
-
 	TheDibLib.Replace(names);
 }
 
