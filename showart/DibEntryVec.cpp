@@ -72,15 +72,10 @@ DibEntry::~DibEntry()
 	
 BOOL DibEntry::Set(const CString& name, bool autodel)
 {
-	CFile cf(name, CFile::modeRead);
-	fs = new FileStatus(name);
+	// if there are thousands of file the CFile ctor takes up ALL of the time.  And it is a LOT OF TIME!!!  It is opening every file with the usual gigantic Microsoft overkill code
+	// The only reason I created the CFile objects was to see if the file exists.  But what's the point?  The filename came in from FindFile (calling code) -- it must exist.
+	// So removed useless S-L-O-W code March 5, 2023
 
-	if(!fs->Exists())
-		return FALSE;
-
-	// BUGFIX!!!  Feb 2023 if there are thousands of files this REALLY slowed things down.  AND time was never used!!!!
-	//long time = fs->Timestamp();
-	
 	strcpy(fullPathName, name);
 	autoDelete = autodel;
 

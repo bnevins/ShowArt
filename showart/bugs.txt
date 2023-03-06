@@ -7,3 +7,9 @@ BUG: file save/save as with no images loaded crashes
 FIXED: Check for condition and put up a message box.  Graying the save and save as would have been more elegant but I don't want to spend the time figuring it out!
 -----------------------------------------------------------------------------------------
 
+Feature Request -- add a checkbox for opening 1 file means open all files in directory
+------------------------------------------------------------------------------------------
+
+Dir with 10,000 files takes forever to open.
+
+Problem must be in DibEntry::Set()  CFile -- opens the file.  Perhaps defer until load time?
