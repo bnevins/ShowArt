@@ -632,10 +632,19 @@ BOOL CShowartApp::DoPromptFileName(LPSTR fileName, UINT nIDSTitle, DWORD lFlags,
 	dlgFile.m_ofn.Flags |= OFN_ALLOWMULTISELECT | OFN_PATHMUSTEXIST;// BN
 	#endif
 
-	BOOL bRet = dlgFile.DoModal() == IDOK ? TRUE : FALSE;
-	oldFilterIndex = dlgFile.m_ofn.nFilterIndex;
-	//fileName.ReleaseBuffer();
+	DWORD pickFolderCheckboxID = 60000;
+	CString checkboxText = "Open all files in the folder";
+	
+	if(bOpenFileDialog)
+		dlgFile.AddCheckButton(pickFolderCheckboxID, checkboxText, Prefs.openAllFilesInFolder);
 
+	BOOL bRet = dlgFile.DoModal() == IDOK ? TRUE : FALSE;
+
+	oldFilterIndex = dlgFile.m_ofn.nFilterIndex;
+
+	if (bOpenFileDialog)
+		dlgFile.GetCheckButtonState(pickFolderCheckboxID, Prefs.openAllFilesInFolder); // openAllFilesInFolder REFERENCE sent in!
+	
 	if(bRet == IDOK)
 	{
 		LPTSTR dir;
