@@ -147,13 +147,13 @@ BOOL CShowartApp::InitInstance()
 	// Enable drag/drop open
 	m_pMainWnd->DragAcceptFiles();
 	SetupShellRegistry();
-	Gdiplus::GdiplusStartup(&m_gdiplusToken, &m_gdiplusStartupInput, NULL);
+	//Gdiplus::GdiplusStartup(&m_gdiplusToken, &m_gdiplusStartupInput, NULL);
 	return TRUE;
 }
 
 int CShowartApp::ExitInstance() 
 {
-	Gdiplus::GdiplusShutdown(m_gdiplusToken);
+	//Gdiplus::GdiplusShutdown(m_gdiplusToken);
 	return CWinApp::ExitInstance();
 }
 

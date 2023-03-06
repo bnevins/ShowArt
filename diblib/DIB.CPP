@@ -1762,9 +1762,16 @@ BNEXPORT void Dib::AutoSavePng(CAtlString& newname, int quality)
 	if (GetType() != pngtype)
 		return;
 
-	//2. Is there a jpg file already?
+	//2. Is it 8 or 24 bit? (JPEG library will throw an exception if not!!
+	WORD numBits = NumColorBits();
+	
+	if (numBits != 8 && numBits != 24)
+		return;  // no mesagebox like in CShowartDoc::OnSaveDocument() or we will annoy user everytime the png is loaded!
+	
+	//3. Is there a jpg file already?
 	ChangeFileExtension(newname, getFilename(), ".jpg");
 	
+	//4. Has it already been written?
 	if (FileExists(newname))
 	{
 		newname = "";
