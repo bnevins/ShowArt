@@ -8,6 +8,7 @@
 #include <afxcmn.h>
 #include <afxframewndex.h>
 #include <afxwinappex.h>
+#include <afxstatusbar.h>
 #include <iomanip>
 #include <fstream>
 #include <iostream>

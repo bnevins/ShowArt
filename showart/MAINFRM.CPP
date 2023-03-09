@@ -241,3 +241,30 @@ void CMainFrame::OnDropFiles(HDROP hDropInfo)
 	else
 		TheDibLib.Add(filenames);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+// Remove Annoying Full Screen Window tear-off menu that MFC added
+
+void CMainFrame::ShowFullScreen()
+{
+	CFrameWndEx::ShowFullScreen(); // Toggles...
+
+	if (IsFullScreen())
+	{
+		CDockingManager* dock = GetDockingManager();
+		CObList listBars;
+		dock->GetPaneList(listBars);
+
+		POSITION pos = listBars.GetHeadPosition();
+		while (pos != NULL)
+		{
+			const CWnd* wnd = dynamic_cast<CWnd*>(listBars.GetNext(pos));
+			
+			if (wnd->IsKindOf(RUNTIME_CLASS(CMFCToolBar)) 
+					&& !wnd->IsKindOf(RUNTIME_CLASS(CMFCStatusBar)) 
+					&& !wnd->IsKindOf(RUNTIME_CLASS(CMFCMenuBar)) 
+					&& wnd->GetSafeHwnd() != m_wndToolBar.GetSafeHwnd())
+				wnd->GetParent()->ShowWindow(SW_HIDE);
+		}
+	}
+}
