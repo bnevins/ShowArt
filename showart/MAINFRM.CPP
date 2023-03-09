@@ -247,9 +247,12 @@ void CMainFrame::OnDropFiles(HDROP hDropInfo)
 
 void CMainFrame::ShowFullScreen()
 {
+	// See big comment in CShowartView::OnKeyDown() about ESC processing.  We need to keep track locally the state of full-screen (because MFC will automatically restore with an escape key)
+
 	CFrameWndEx::ShowFullScreen(); // Toggles...
 	if (IsFullScreen())
 	{
+		weSetFullScreen = TRUE;
 		CDockingManager* dock = GetDockingManager();
 		CObList listBars;
 		dock->GetPaneList(listBars);
@@ -266,4 +269,17 @@ void CMainFrame::ShowFullScreen()
 				wnd->GetParent()->ShowWindow(SW_HIDE);
 		}
 	}
+	else
+		weSetFullScreen = FALSE;
+
 }
+BOOL CMainFrame::GetWeSetFullScreen()
+{
+	return weSetFullScreen;
+}
+
+void CMainFrame::ClearWeSetFullScreen()
+{
+	weSetFullScreen = FALSE;
+}
+

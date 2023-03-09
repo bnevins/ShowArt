@@ -19,12 +19,15 @@ public:
 	virtual ~CMainFrame();
 	virtual CView* GetActiveView();
 	virtual void ShowFullScreen();
+	BOOL GetWeSetFullScreen();
+	void ClearWeSetFullScreen();
 #ifdef _DEBUG
 	virtual	void AssertValid() const;
 	virtual	void Dump(CDumpContext& dc) const;
 #endif
 
 private:
+	BOOL weSetFullScreen = FALSE;
 protected:	// control bar embedded members
 	CStatusBar	m_wndStatusBar;
 	CToolBar	m_wndToolBar;

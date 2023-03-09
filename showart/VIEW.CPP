@@ -391,8 +391,31 @@ void CShowartView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	if(nChar == 'A')
 		SetTimer();
-	if(nChar == VK_ESCAPE)
-		GetMainFrame()->ShowFullScreen();
+	
+	/* ISSUE--
+	 * Say the screen is fullscreen BEFORE escape was pressed.  Before we get the escape key here, CFrameWndEx::PreTranslateMessage(MSG* pMsg) will get it and restore the window.
+	 * Which will set the "is-full" flag to false.  So there are 2 scenarios:
+	 * 1.  We are in restore state and we pressed escape.  CFrameWndEx::PreTranslateMessage(MSG* pMsg) ignored it.  We want to go full screen
+	 * 2. We WERE in full screen, CFrameWndEx::PreTranslateMessage(MSG* pMsg) put it in restore state already.  We want to do nothing
+	 * Unfortunately we can't just call IsFullScreen() because it will return FALSE in both situations.
+	 * Solution -- MFC will never set to full screen by itself, it will only restore by itself.  So we keep track of it with the "weSetFullScreen" variable in CMainFrame.
+	 * This variable is only set by CMainFrame -- not CFrameWndEx.
+	 * If we call restore ourselves, the flag is set to FALSE.  If we get the escape key AND MFC restored, we have to manually set the flag to false here.
+	 * Whew!!!
+	 * 
+	 */
+	if (nChar == VK_ESCAPE)
+	{
+		CMainFrame* pFrame = GetMainFrame();
+		
+		if (!pFrame)
+			return; // shouldn't happen!
+		
+		if (pFrame->GetWeSetFullScreen()) // don't touch window!
+			pFrame->ClearWeSetFullScreen();
+		else
+			GetMainFrame()->ShowFullScreen();
+	}
 	else
 		KeyCommandHandler(nChar, *this);
 }

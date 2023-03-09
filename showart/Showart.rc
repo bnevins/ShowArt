@@ -138,7 +138,7 @@ BEGIN
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Fi&t to Window\tCtrl+T or Middle Mouse", ID_VIEW_FITTOWINDOW
-        MENUITEM "&Full Screen\tCtrl+F",        ID_VIEW_FULLSCREEN
+        MENUITEM "&Full Screen\tCtrl+F or ESC",        ID_VIEW_FULLSCREEN
         MENUITEM SEPARATOR
         MENUITEM "Skip Forward 5\tCtrl+<Right>", ID_SKIP_FORWARD
         MENUITEM "Skip Forward 25\tCtrl+Shift+<Right>", ID_SKIP_FORWARD_MORE
