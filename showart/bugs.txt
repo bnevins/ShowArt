@@ -24,3 +24,12 @@ is loaded TWICE
 FIXED!!!
 -------------------------------------------------------------------------------------------------
 FEATURE -- put super-skip, super-delete on menu
+--------------------------------------------------------------------------------
+
+Using new MFC window/app classes to implement fullscreen.
+
+NEW BUG: ^F ^F ^F works perfectly
+ESC-ESC-ESC does NOT work right
+-----------------------------------------------------------------------------------
+BUG: Get rid of pesky little tear-off menu on full screen
+-----------------------------------------------------------------------------------
