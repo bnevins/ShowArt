@@ -47,3 +47,5 @@ ESC-ESC-ESC does NOT work right
 BUG: Get rid of pesky little tear-off menu on full screen
 FIXED -- it's a MFCToolBar
 -----------------------------------------------------------------------------------
+FEATURE -- Recursive file open ???
+------------------------------------------------------------------------------------

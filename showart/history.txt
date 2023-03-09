@@ -81,3 +81,19 @@ Now in List mode the drive letter is stripped off
 
 7.5 
 No real changes I think.  Installer working again.
+
+==================================
+
+Version 9.0 Feb 2023
+
+1. PNG file support added.  
+2. Autosave png as jpeg preference added
+3. Added a checkbox to Open File Dialog -- open all files in directory
+4. Performance -- speed at opening 10,000 files in a directory improved 100X !!
+
+================================
+
+Version 10.0 March 2023
+Fixed Full Screen behavior.  No longer lets junk leak through from desktop -- Both ^F and Escape work perfectly toggling from full screen to restored state.
+
+==================================
