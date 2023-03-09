@@ -83,6 +83,10 @@ void CShowartView::MyDraw(CDC* pDC)
 	prevDib = dib;
 
 	CMainFrame* pAppFrame = GetMainFrame();
+	
+	if (!pAppFrame)
+		return;
+	
 	CView* pView = pAppFrame->GetActiveView();
 
 	CRect r;

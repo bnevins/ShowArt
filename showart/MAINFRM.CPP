@@ -248,7 +248,6 @@ void CMainFrame::OnDropFiles(HDROP hDropInfo)
 void CMainFrame::ShowFullScreen()
 {
 	CFrameWndEx::ShowFullScreen(); // Toggles...
-
 	if (IsFullScreen())
 	{
 		CDockingManager* dock = GetDockingManager();
