@@ -61,7 +61,7 @@ private:
 //	DirectDrawWin* pDDW;
 	void	SetTimer()	{ wTimer = ::SetTimer(m_hWnd, timerID, Prefs.autoTime * 1000, NULL); }
     void	KillTimer()	{ if(wTimer)  ::KillTimer(m_hWnd, timerID); wTimer = 0; }
-	void	MyDraw(CDC* pDC, bool fullscreen);
+	void	MyDraw(CDC* pDC);
 };
 
 #ifndef _DEBUG	// debug version in view.cpp

@@ -23,3 +23,4 @@ BUG - Everytime you select ONE file in a directory, all files are loaded but the
 is loaded TWICE
 FIXED!!!
 -------------------------------------------------------------------------------------------------
+FEATURE -- put super-skip, super-delete on menu

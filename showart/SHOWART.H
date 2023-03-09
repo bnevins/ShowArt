@@ -24,14 +24,14 @@ extern Dib*	pNullDib;
 #ifdef _MDI
 #define CBaseFrameWnd	CMDIFrameWnd
 #else
-#define CBaseFrameWnd	CFrameWnd
+#define CBaseFrameWnd	CFrameWndEx
 #endif
 
 class CMainFrame;
 class CShowartView;
 class CShowartDoc;
 
-class CShowartApp : public CWinApp
+class CShowartApp : public CWinAppEx
 {
 	CMultiDocTemplate *bmpTemplate;
 	//BOOL globalStretch;

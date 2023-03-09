@@ -4,9 +4,7 @@
 #include "stdafx.h"
 #include "showart.h"
 #include "mainfrm.h"
-#include "FullScreen.h"
 #include "dib_iter.h"
-#include "fullscre.h"
 #include "Filename.h"
 
 #ifdef _DEBUG
@@ -93,7 +91,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE("Failed to create status bar\n");
 		return -1;		// fail to create
 	}
-
+	EnableFullScreenMode(ID_VIEW_FULLSCREEN);
 	return 0;
 }
 
@@ -242,28 +240,4 @@ void CMainFrame::OnDropFiles(HDROP hDropInfo)
 		TheDibLib.Replace(filenames);
 	else
 		TheDibLib.Add(filenames);
-}
-
-
-bool CMainFrame::isFullScreen()
-{
-	return fullScreen.isFullScreen();
-}
-
-void CMainFrame::startFullScreen()
-{
-	fullScreen.startFullScreen(this);
-}
-
-void CMainFrame::stopFullScreen()
-{
-	fullScreen.stopFullScreen(this);
-}
-
-void CMainFrame::toggleFullScreen()
-{
-	if(isFullScreen())
-		stopFullScreen();
-	else
-		startFullScreen();
 }

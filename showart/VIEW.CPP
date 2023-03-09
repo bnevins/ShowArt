@@ -7,8 +7,6 @@
 #include "doc.h"
 #include "dib_iter.h"
 #include "view.h"
-#include "fullscre.h"
-//#include "DirectDrawWin.h"
 #include "KeyCommandHandler.h"
 #include "ShowartUtils.h"
 
@@ -63,27 +61,19 @@ CShowartView::~CShowartView()
 
 void CShowartView::OnDraw(CDC* pDC)
 {
-	CMainFrame* pAppFrame = GetMainFrame();
-	
-	if(pAppFrame->isFullScreen())
-	{
-		CClientDC dc(NULL);
-		OnPrepareDC(&dc);
-		MyDraw(&dc, true);
-	}
-	else
-		MyDraw(pDC, false);
+		MyDraw(pDC);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
-void CShowartView::MyDraw(CDC* pDC, bool fullscreen)
+void CShowartView::MyDraw(CDC* pDC)
 {
 	static Dib* prevDib = NULL;
 
 	CShowartDoc* pDoc = GetDocument();
 	Dib *dib = pDoc->GetDib();
 	HDC hDC = pDC->m_hDC;
+
 	if(!dib)
 		return;
 	
@@ -94,35 +84,21 @@ void CShowartView::MyDraw(CDC* pDC, bool fullscreen)
 
 	CMainFrame* pAppFrame = GetMainFrame();
 	CView* pView = pAppFrame->GetActiveView();
-	
-	/*
-	if(pView)
-	{
-		if(this == pView)
-			dib->Realize(hDC, FALSE); // false == FOREGROUND, true == background
-		else
-			dib->Realize(hDC, TRUE);
-	}
-	*/
-	CRect r;
 
-	if(fullscreen)
-		r = ShowartUtils::GetFullScreenRect();
-	else
-		GetClientRect(r);
+	CRect r;
+	GetClientRect(r);
 
 	CRect	dibRect	= ShowartUtils::FitToWindow(r.Size(), *dib, Globals::stretch);
 	CPoint	origin	= dibRect.TopLeft();
 
-	if(fullscreen)
+	// black background for fullscreen...
+	if(pAppFrame->IsFullScreen())
 	{
 		CBrush brush(RGB(0,0,0)); 
 		pDC->FillRect(&r, &brush);
 	}
 
-
 	dib->ShowWithPal(hDC, origin.x, origin.y, dibRect.Width(), dibRect.Height());			
-	//dib->UnRealize(hDC);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -231,9 +207,8 @@ CShowartDoc* CShowartView::GetDocument() // non-debug version is inline
 
 void CShowartView::OnViewFullscreen()
 {      
-
-	GetMainFrame()->startFullScreen();
-}  
+	GetMainFrame()->ShowFullScreen();
+}
 
 
 
@@ -413,7 +388,7 @@ void CShowartView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if(nChar == 'A')
 		SetTimer();
 	if(nChar == VK_ESCAPE)
-		GetMainFrame()->toggleFullScreen();
+		GetMainFrame()->ShowFullScreen();
 	else
 		KeyCommandHandler(nChar, *this);
 }

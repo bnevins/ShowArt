@@ -6,6 +6,8 @@
 #include <afxwin.h>			// MFC core and standard components
 #include <afxext.h> 		// MFC extensions (including VB)
 #include <afxcmn.h>
+#include <afxframewndex.h>
+#include <afxwinappex.h>
 #include <iomanip>
 #include <fstream>
 #include <iostream>

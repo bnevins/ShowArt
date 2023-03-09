@@ -1,9 +1,6 @@
 // mainfrm.h : interface of the CMainFrame class
 //
 /////////////////////////////////////////////////////////////////////////////
-#ifndef FULLSCREEN__H__
-#include "FullScreen.h"
-#endif
 
 class CMainFrame : public CBaseFrameWnd
 {
@@ -19,10 +16,6 @@ public:
 
 // Implementation
 public:
-	void toggleFullScreen();
-	void stopFullScreen();
-	void startFullScreen();
-	bool isFullScreen();
 	virtual ~CMainFrame();
 	virtual CView* GetActiveView();
 #ifdef _DEBUG
@@ -31,8 +24,6 @@ public:
 #endif
 
 private:
-	friend		FullScreen;
-	FullScreen	fullScreen;
 protected:	// control bar embedded members
 	CStatusBar	m_wndStatusBar;
 	CToolBar	m_wndToolBar;
