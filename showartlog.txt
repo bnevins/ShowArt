@@ -1,0 +1,281 @@
+commit 2e7e9841cd15d0ff63fe6bec67664adc468606f2
+Author: bnevins <biz@bnevins.com>
+Date:   Mon Mar 6 12:56:06 2023 -0500
+
+    NEW FEATURE -- open-all-files-in-folder checkbox in dialog
+    BUGFIX -- files are not added twice to file list
+
+commit c0b78e364546bbe0153a45168658704042430f68
+Author: bnevins <biz@bnevins.com>
+Date:   Mon Mar 6 12:26:51 2023 -0500
+
+    NEW FEATURE -- add a "open all files in folder" checkbox for open file dialog
+    The value is persisted in Preferences
+
+commit 997eaf2148d6b58ae344efc3ab640cb5da30c197
+Author: bnevins <biz@bnevins.com>
+Date:   Mon Mar 6 00:50:58 2023 -0500
+
+    PERFORMANCE BUG !!!!
+    If opening a huge number of files in a directory I was creating a CFile object for every file -- just to see if it exists.  99.9% of the total time was spent in the CGFile ctor() in overkill Microsoft code.
+    It was opening every file!
+    ANd there was no point creating the CFile because I was only using it to test if the file exists.  But the
+    filename was coming in from (calling code) that had just done a FileFind call - so we know the file exists.
+    The code was a huge waste of time.
+    I removed it.
+
+commit d42a000d56f4118728c818017bb5e2a1b8f59951
+Author: bnevins <biz@bnevins.com>
+Date:   Mon Mar 6 00:07:42 2023 -0500
+
+    NEW BUG!
+    When I added the auto-save PNG functionality I forgot to test against png files with bits/pixel
+    not 8 or 24 (jpeg library crashes program if not).  Added that check...
+
+commit 48b380e82fc97beddf040733001f1c0c4e04f1ef
+Author: bnevins <biz@bnevins.com>
+Date:   Sun Mar 5 20:41:22 2023 -0500
+
+    ...
+
+commit 9e18c92f1ed487b6b70ddc9c4654adc2d539c0ac
+Author: bnevins <biz@bnevins.com>
+Date:   Sun Mar 5 11:41:06 2023 -0500
+
+    BUGFIX:  save/save as with no image loaded crashes
+
+commit 6ba48422ae38fc9840c43ba04fd5d309cb3f35fd
+Author: bnevins <biz@bnevins.com>
+Date:   Sun Mar 5 10:43:46 2023 -0500
+
+    Build file changes for release version
+
+commit 3d1ca7fe29e02754e3d96f6c192fd33bf0ef543d
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Mar 4 23:16:42 2023 -0500
+
+    The jpeg quality from Preferences is used to write the auto-save jpg now...
+
+commit 5de78f520107440b1daa811f37a7ec32ce4734db
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Mar 4 23:02:21 2023 -0500
+
+    uper annoying problem!  in DibLib "CString" is type-def'd to something different from showart.exe
+    This caused weird link errors
+    Now I explicitly use the DibLib CString which is CAtlString
+
+commit 5fadba0f30bfe0b4b8d5c0fa0c7794513b5ccc45
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Mar 4 22:27:25 2023 -0500
+
+    Weird linker error
+
+commit afde17388b7bb6c28ae55a32cfeab606891682f2
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Mar 4 16:40:48 2023 -0500
+
+    Adding auto-save-png-as-jpeg option
+
+commit 94ea6b7b14d773b35f8ce48c90ff255a0903a509
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Mar 4 13:53:32 2023 -0500
+
+    Now if you push the save button for a non-jpeg file, it will create a new jpg file using the base name of the other file.
+    E.g. foo.png is saved as foo.jpg
+
+commit f688b669c5d03355aa1348167e7ba5eeb9795501
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Mar 4 12:31:48 2023 -0500
+
+    BUGFIX:  Now we check for the number of color bits BEFORE calling JPEG library code.
+
+commit 8b3948abd765454ed92d839d7f47b6bcaff37bbd
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Mar 4 11:35:36 2023 -0500
+
+    Trivial.  Testing git master..test
+
+commit db55365c5e55e1bd0a45c85ed21a417c1b2c0de2
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Mar 4 00:01:19 2023 -0500
+
+    ...
+
+commit 82b494aaba118a4b73beb41212bd90638b501954
+Author: bnevins <biz@bnevins.com>
+Date:   Fri Mar 3 23:47:48 2023 -0500
+
+    more image files.
+
+commit 251cfff981ef1eff469befa5e0d571f0d93102b1
+Author: bnevins <biz@bnevins.com>
+Date:   Fri Mar 3 23:46:59 2023 -0500
+
+    SAVE BUG - not fixed.  Need to look into the code that calls RaiseException in jerror.c (it is C, not C++, so no exception handling.  ListFilesInDirectory no longer only gathers jpg files.
+
+commit e00895d1c7a4ffcdf04f4267e92c65ff8b176c0c
+Author: bnevins <biz@bnevins.com>
+Date:   Fri Mar 3 17:14:57 2023 -0500
+
+    sample png.  BUG if you try to save hello.png
+
+commit 6fe7f0eee2b1c3e94ea86f4bf637610a9497c3ac
+Author: bnevins <biz@bnevins.com>
+Date:   Fri Mar 3 14:56:51 2023 -0500
+
+    latest png change
+
+commit 7d749ca2d8c161c89f3b7e854d4e1d09d18084be
+Author: bnevins <biz@bnevins.com>
+Date:   Fri Mar 3 13:52:52 2023 -0500
+
+    PNG plumbed together and working!
+
+commit ec09e938266e4bdfa15eedac1d1dc95ef9d94812
+Author: bnevins <biz@bnevins.com>
+Date:   Fri Mar 3 13:12:14 2023 -0500
+
+    PNG support coming along!
+
+commit 6e555b392b47abb06265fe39da8085b8ddce5497
+Author: bnevins <biz@bnevins.com>
+Date:   Fri Mar 3 10:45:02 2023 -0500
+
+    PROOF OF CONCEPT!!!  It actually displayed a png file for the first time!
+    Next:  do all the plumbing -- add a new type, etc.
+    Currently I have it hacked -- change png filename to ".tif".  Tif calling code is calling new png code
+
+commit 070444cfa315dac0f6a1219d9a0553e588e51438
+Author: bnevins <biz@bnevins.com>
+Date:   Fri Mar 3 00:04:52 2023 -0500
+
+    Stuffed in the code for turning a png file into decoded dib bits.  Tons of work left to do...
+
+commit 29719a9b2624bcba7050fb3af6ae6f6f46257474
+Author: bnevins <biz@bnevins.com>
+Date:   Thu Mar 2 19:34:01 2023 -0500
+
+    Bunch of changes.  Added gdiplus stuff.
+    QUESTION - how to initialize GDI+ from DLL instead of exe?
+    Getting ready for big changes
+
+commit 6944401694d5ed4a914506040712b511c2451493
+Author: bnevins <biz@bnevins.com>
+Date:   Wed Mar 1 17:28:52 2023 -0500
+
+    ....
+
+commit 8e91a80daef35544662cbecec95d14c3a0b3d037
+Author: bnevins <biz@bnevins.com>
+Date:   Wed Mar 1 14:00:23 2023 -0500
+
+    Remove zlib source
+
+commit 8a147256c1c42c7aa5fe9bee14de768b16118d6f
+Author: bnevins <biz@bnevins.com>
+Date:   Wed Mar 1 13:59:47 2023 -0500
+
+    Remove libpng source
+
+commit 11d376a14edb9e18e88ea65e6e8daa18fbf8ce36
+Author: bnevins <biz@bnevins.com>
+Date:   Wed Mar 1 13:57:00 2023 -0500
+
+    Get rid of png and zlib source.  Instead we will use the pre-built dll
+
+commit 818b2c0d9d34e4fdadc910ae7f5786e58c146473
+Author: bnevins <biz@bnevins.com>
+Date:   Tue Feb 28 16:28:28 2023 -0500
+
+    latest
+
+commit 1cbc236bb0c0c69d31cba840416230db305fbfb7
+Author: bnevins <biz@bnevins.com>
+Date:   Tue Feb 28 11:11:34 2023 -0500
+
+    New build stuff with png seems to be working OK.
+    I got rid of concept of having a "dist" dir with the exe's and dll's.  Now they are in Debug or Release folders
+
+commit 9694f46624aeb5406ed3925362b9f22f1dd1cdd2
+Author: bnevins <biz@bnevins.com>
+Date:   Tue Feb 28 00:39:16 2023 -0500
+
+    TRIVIAL - whitespace only
+
+commit 8d98ec267f2e1c55bc80fdaffb31d8377713537b
+Author: bnevins <biz@bnevins.com>
+Date:   Tue Feb 28 00:37:52 2023 -0500
+
+    Tweaking build files
+
+commit f0d531f92b32161c5120c92709477b93b0e791c8
+Author: bnevins <biz@bnevins.com>
+Date:   Tue Feb 28 00:35:05 2023 -0500
+
+    BUGFIX !!!!
+    Do you ever open up thousands of files in one directory?  It takes FOREVER.
+    
+    I tested it by creating a directory with 10,000 files in it.  I thought maybe the data structure is slowing down as it fills up.  So I would expect it to start fast and then slowdown.
+    Nope.  I had it print the time every 100 files.  It took about 2 seconds for every 100 files.  Which is 200 (!!!) seconds for 10000 files!  Same time spent for every 100 files.
+    
+    Next I went through the code in the 10,000 item loop.  There was this call:
+    
+    long time = fs->Timestamp();
+    
+    It fetched the timestamp for every file.  I left that in the code all this time for no reason.  I never used the timestamp!  This looked super-suspicious.  So I deleted that one line.
+    
+    Result -- it read in 10,000 files in under 2 seconds!  A 100X performance improvement!
+    
+    getting the timestamp was taking 99+% of the time
+
+commit b49fa3aeed851abc04fe2089912ce0c83fd897d6
+Author: bnevins <biz@bnevins.com>
+Date:   Mon Feb 27 22:49:12 2023 -0500
+
+    Adding png file support
+
+commit f2b36d60358a5de1422f285b8c34024dee0f4e94
+Author: bnevins <biz@bnevins.com>
+Date:   Mon Feb 27 22:48:43 2023 -0500
+
+    Trying to add png support
+
+commit 68fb4170802582b6cbc639046c03bb631283b376
+Author: bnevins <biz@bnevins.com>
+Date:   Mon Feb 27 14:22:44 2023 -0500
+
+    Trying to add libpng
+
+commit c093d95de847ad3aef9b1a5248a640649ab02cd5
+Author: bnevins <biz@bnevins.com>
+Date:   Mon Feb 27 14:17:36 2023 -0500
+
+    zlib added
+
+commit 59ad47d223b4ae3ef910c4107ad44366db65105c
+Author: bnevins <biz@bnevins.com>
+Date:   Sun Feb 26 23:36:59 2023 -0500
+
+    updated to VS 2022...
+
+commit 0e4a497dc8a7e793353f47457f9710b36c90af69
+Author: bnevins <biz@bnevins.com>
+Date:   Sun Feb 26 10:45:12 2023 -0500
+
+    Added Showart.vcxproj.user -- crucial to find the right DLL at runtime for debugging!
+    Huge build changes -- files go into Debug/Release folders without the "d" appended to name kludge.  Exceport for
+    showart.exe ::: bndib.dll
+    showartd.exe ::: bndibd.dll
+
+commit 97030f5102762fe7be6f46a8bc38302cf920678a
+Author: bnevins <biz@bnevins.com>
+Date:   Sun Feb 26 00:07:25 2023 -0500
+
+    Updated about box version string
+
+commit b1b0ca82eae7771b532612dc403efa31628ff3bf
+Author: bnevins <biz@bnevins.com>
+Date:   Sat Feb 25 23:55:27 2023 -0500
+
+    Changed for VS 2022
+
