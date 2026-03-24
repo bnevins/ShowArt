@@ -1,0 +1,52 @@
+1776147 Removing old unused files
+d560f36 Latest
+842b1e0 Version 10.0
+0001c9b make merging test to master less painful
+600a763 BUG with Esc-Esc-esc toggling full screen::restored screen is FIXED!!! /* ISSUE-- 	 * Say the screen is fullscreen BEFORE escape was pressed.  Before we get the escape key here, CFrameWndEx::PreTranslateMessage(MSG* pMsg) will get it and restore the window. 	 * Which will set the "is-full" flag to false.  So there are 2 scenarios: 	 * 1.  We are in restore state and we pressed escape.  CFrameWndEx::PreTranslateMessage(MSG* pMsg) ignored it.  We want to go full screen 	 * 2. We WERE in full screen, CFrameWndEx::PreTranslateMessage(MSG* pMsg) put it in restore state already.  We want to do nothing 	 * Unfortunately we can't just call IsFullScreen() because it will return FALSE in both situations. 	 * Solution -- MFC will never set to full screen by itself, it will only restore by itself.  So we keep track of it with the "weSetFullScreen" variable in CMainFrame. 	 * This variable is only set by CMainFrame -- not CFrameWndEx. 	 * If we call restore ourselves, the flag is set to FALSE.  If we get the escape key AND MFC restored, we have to manually set the flag to false here. 	 * Whew!!! 	 * 	 */
+fdb89f6 MainFrame is NULL at very start -- added a check
+434bea4 update bug list
+7cf8fff BUGFIX -- remove annoying MFC Full Screen toolbar
+163f4b1 ...
+e1fac3c Using new MFC window/app classes to implement fullscreen.
+2e7e984 NEW FEATURE -- open-all-files-in-folder checkbox in dialog BUGFIX -- files are not added twice to file list
+c0b78e3 NEW FEATURE -- add a "open all files in folder" checkbox for open file dialog The value is persisted in Preferences
+997eaf2 PERFORMANCE BUG !!!! If opening a huge number of files in a directory I was creating a CFile object for every file -- just to see if it exists.  99.9% of the total time was spent in the CGFile ctor() in overkill Microsoft code. It was opening every file! ANd there was no point creating the CFile because I was only using it to test if the file exists.  But the filename was coming in from (calling code) that had just done a FileFind call - so we know the file exists. The code was a huge waste of time. I removed it.
+d42a000 NEW BUG! When I added the auto-save PNG functionality I forgot to test against png files with bits/pixel not 8 or 24 (jpeg library crashes program if not).  Added that check...
+48b380e ...
+9e18c92 BUGFIX:  save/save as with no image loaded crashes
+6ba4842 Build file changes for release version
+3d1ca7f The jpeg quality from Preferences is used to write the auto-save jpg now...
+5de78f5 uper annoying problem!  in DibLib "CString" is type-def'd to something different from showart.exe This caused weird link errors Now I explicitly use the DibLib CString which is CAtlString
+5fadba0 Weird linker error
+afde173 Adding auto-save-png-as-jpeg option
+94ea6b7 Now if you push the save button for a non-jpeg file, it will create a new jpg file using the base name of the other file. E.g. foo.png is saved as foo.jpg
+f688b66 BUGFIX:  Now we check for the number of color bits BEFORE calling JPEG library code.
+8b3948a Trivial.  Testing git master..test
+db55365 ...
+82b494a more image files.
+251cfff SAVE BUG - not fixed.  Need to look into the code that calls RaiseException in jerror.c (it is C, not C++, so no exception handling.  ListFilesInDirectory no longer only gathers jpg files.
+e00895d sample png.  BUG if you try to save hello.png
+6fe7f0e latest png change
+7d749ca PNG plumbed together and working!
+ec09e93 PNG support coming along!
+6e555b3 PROOF OF CONCEPT!!!  It actually displayed a png file for the first time! Next:  do all the plumbing -- add a new type, etc. Currently I have it hacked -- change png filename to ".tif".  Tif calling code is calling new png code
+070444c Stuffed in the code for turning a png file into decoded dib bits.  Tons of work left to do...
+29719a9 Bunch of changes.  Added gdiplus stuff. QUESTION - how to initialize GDI+ from DLL instead of exe? Getting ready for big changes
+6944401 ....
+8e91a80 Remove zlib source
+8a14725 Remove libpng source
+11d376a Get rid of png and zlib source.  Instead we will use the pre-built dll
+818b2c0 latest
+1cbc236 New build stuff with png seems to be working OK. I got rid of concept of having a "dist" dir with the exe's and dll's.  Now they are in Debug or Release folders
+9694f46 TRIVIAL - whitespace only
+8d98ec2 Tweaking build files
+f0d531f BUGFIX !!!! Do you ever open up thousands of files in one directory?  It takes FOREVER.
+b49fa3a Adding png file support
+f2b36d6 Trying to add png support
+68fb417 Trying to add libpng
+c093d95 zlib added
+59ad47d updated to VS 2022...
+0e4a497 Added Showart.vcxproj.user -- crucial to find the right DLL at runtime for debugging! Huge build changes -- files go into Debug/Release folders without the "d" appended to name kludge.  Exceport for showart.exe ::: bndib.dll showartd.exe ::: bndibd.dll
+97030f5 Updated about box version string
+b1b0ca8 Changed for VS 2022
+6f3a60c Update to VS 2022
