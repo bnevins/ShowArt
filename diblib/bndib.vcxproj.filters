@@ -42,6 +42,9 @@
     <ClCompile Include="pngencoder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WicUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Studio\VC98\Include\BASETSD.H">
