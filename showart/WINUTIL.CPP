@@ -1,6 +1,7 @@
 
 #include "STDAFX.H"
 #include "WinUtil.h"
+#pragma comment(lib, "Windowscodecs.lib")
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -8,6 +9,145 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+
+
+//#include <windows.h>
+//#include <wincodec.h>
+//#include <atlstr.h>
+//#include <iostream>
+
+
+
+/**
+ * LoadImageToDIB
+ * * Decodes an image file (HEIC, PNG, JPG, etc.) using WIC and returns a
+ * Global Memory handle to a Packed DIB (BITMAPINFOHEADER + Pixel Data).
+ * * @param strPath: Full filesystem path to the image file.
+ * @return: HGLOBAL containing the packed DIB, or NULL on failure.
+ */
+HGLOBAL LoadImageToDIB(const CString& strPath) {
+	HRESULT hr = S_OK;
+	IWICImagingFactory* pFactory = NULL;
+	IWICBitmapDecoder* pDecoder = NULL;
+	IWICBitmapFrameDecode* pFrame = NULL;
+	IWICFormatConverter* pConverter = NULL;
+
+	HGLOBAL hDib = NULL;
+
+	// 1. Initialize WIC Factory
+	hr = CoCreateInstance(
+		CLSID_WICImagingFactory,
+		NULL,
+		CLSCTX_INPROC_SERVER,
+		IID_PPV_ARGS(&pFactory)
+	);
+
+	if (FAILED(hr)) return NULL;
+
+	// FIX for Error E0413: 
+	// Ensure the path is converted to a wide string (LPCWSTR) which WIC strictly 
+	// requires, bypassing the issue in legacy MBCS/Multi-Byte MFC projects.
+	CStringW wstrPath(strPath);
+
+	// 2. Create decoder from the file path
+	// WIC automatically detects the format (PNG, HEIC, etc.) via the file header
+	hr = pFactory->CreateDecoderFromFilename(
+		wstrPath,
+		NULL,
+		GENERIC_READ,
+		WICDecodeMetadataCacheOnDemand,
+		&pDecoder
+	);
+
+	if (SUCCEEDED(hr)) {
+		hr = pDecoder->GetFrame(0, &pFrame);
+	}
+
+	if (SUCCEEDED(hr)) {
+		// 3. Convert image to a standard DIB-compatible pixel format (32bpp BGR)
+		hr = pFactory->CreateFormatConverter(&pConverter);
+	}
+
+	if (SUCCEEDED(hr)) {
+		hr = pConverter->Initialize(
+			pFrame,
+			GUID_WICPixelFormat32bppBGR, // Standard 32-bit DIB format
+			WICBitmapDitherTypeNone,
+			NULL,
+			0.0f,
+			WICBitmapPaletteTypeCustom
+		);
+	}
+
+	if (SUCCEEDED(hr)) {
+		UINT width, height;
+		pConverter->GetSize(&width, &height);
+
+		// 4. Calculate buffer size for Packed DIB
+		// Stride must be DWORD aligned for DIBs, but 32bpp is naturally aligned
+		UINT stride = width * 4;
+		UINT imageSize = stride * height;
+		UINT totalSize = sizeof(BITMAPINFOHEADER) + imageSize;
+
+		// 5. Allocate Global Memory
+		hDib = GlobalAlloc(GHND, totalSize);
+		if (hDib) {
+			LPBYTE pData = (LPBYTE)GlobalLock(hDib);
+			if (pData) {
+				// 6. Setup BITMAPINFOHEADER
+				PBITMAPINFOHEADER pbi = (PBITMAPINFOHEADER)pData;
+				pbi->biSize = sizeof(BITMAPINFOHEADER);
+				pbi->biWidth = width;
+				pbi->biHeight = -(LONG)height; // Negative for top-down DIB
+				pbi->biPlanes = 1;
+				pbi->biBitCount = 32;
+				pbi->biCompression = BI_RGB;
+				pbi->biSizeImage = imageSize;
+
+				// 7. Copy pixels directly into the buffer after the header
+				hr = pConverter->CopyPixels(
+					NULL,
+					stride,
+					imageSize,
+					pData + sizeof(BITMAPINFOHEADER)
+				);
+
+				GlobalUnlock(hDib);
+
+				if (FAILED(hr)) {
+					GlobalFree(hDib);
+					hDib = NULL;
+				}
+			}
+		}
+	}
+
+	// Cleanup WIC resources
+	if (pConverter) pConverter->Release();
+	if (pFrame) pFrame->Release();
+	if (pDecoder) pDecoder->Release();
+	if (pFactory) pFactory->Release();
+
+	return hDib;
+}
+
+/* Usage Example:
+--------------
+void DisplayImage(CString path) {
+	HGLOBAL hDib = LoadImageToDIB(path);
+	if (hDib) {
+		LPVOID pBuffer = GlobalLock(hDib);
+		PBITMAPINFOHEADER pbi = (PBITMAPINFOHEADER)pBuffer;
+		LPVOID pPixels = (LPBYTE)pBuffer + pbi->biSize;
+
+		// Use with StretchDIBits or CreateDIBitmap
+		// ...
+
+		GlobalUnlock(hDib);
+		GlobalFree(hDib);
+	}
+}
+*/
 void ListFilesInDirectory(LPCTSTR dirName, CStringArray& filepaths )
 {
 	// BUG ALERT FIXME  Instead of *.* -- get bmp,tif,jpg,png, etc

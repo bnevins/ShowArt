@@ -7,3 +7,4 @@ extern BOOL		IsDir(const CString& name);
 extern void		ListFilesInDirectory(LPCTSTR dirName, CStringArray& filepaths );
 extern BOOL		Exists(LPCTSTR path);
 extern CString  NextFileName(CString&  path);
+extern HGLOBAL	LoadImageToDIB(const CString& strPath);
