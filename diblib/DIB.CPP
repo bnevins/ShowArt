@@ -9,12 +9,115 @@
 #include "JpegWriter.h"
 #include "png.h"
 
-//using namespace Gdiplus;
+#include <wincodec.h>          // WIC interfaces
+#include <wrl/client.h>        // ComPtr
+#include <vector>
 
-//#ifndef _DLL
-//#error Setup for use as DLL only!!!!
-//#endif
+using Microsoft::WRL::ComPtr;  // so you can write ComPtr<> instead of Microsoft::WRL::ComPtr<>
+#include <windowsx.h>          // if you're still using GlobalAllocPtr
 
+#pragma comment(lib, "windowscodecs.lib")
+using Microsoft::WRL::ComPtr;
+
+// Creates a packed DIB (BITMAPINFOHEADER + bits) that your existing
+// Dib class expects. Returns NULL on failure.
+// The returned pointer must be freed with GlobalFreePtr / your Free().
+static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
+{
+	if (!pSource)
+		return NULL;
+
+	ComPtr<IWICImagingFactory> pFactory;
+	HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory, NULL,
+		CLSCTX_INPROC_SERVER,
+		IID_PPV_ARGS(&pFactory));
+	if (FAILED(hr))
+		return NULL;
+
+	// Optional scaling
+	ComPtr<IWICBitmapSource> pScaled = pSource;
+	if (scale > 0.0 && scale < 0.99)
+	{
+		UINT w = 0, h = 0;
+		pSource->GetSize(&w, &h);
+		UINT newW = (UINT)(w * scale + 0.5);
+		UINT newH = (UINT)(h * scale + 0.5);
+		if (newW < 1) newW = 1;
+		if (newH < 1) newH = 1;
+
+		ComPtr<IWICBitmapScaler> pScaler;
+		hr = pFactory->CreateBitmapScaler(&pScaler);
+		if (SUCCEEDED(hr))
+			hr = pScaler->Initialize(pSource, newW, newH,
+				WICBitmapInterpolationModeFant);
+		if (SUCCEEDED(hr))
+			pScaled = pScaler;
+	}
+
+	// Convert to 32bpp BGRA (easiest + works with your existing code)
+	ComPtr<IWICFormatConverter> pConverter;
+	hr = pFactory->CreateFormatConverter(&pConverter);
+	if (FAILED(hr))
+		return NULL;
+
+
+	hr = pConverter->Initialize(pScaled.Get(),
+		GUID_WICPixelFormat32bppBGRA,
+		WICBitmapDitherTypeNone,
+		NULL, 0.0,
+		WICBitmapPaletteTypeCustom);
+
+	if (FAILED(hr))
+		return NULL;
+
+	UINT width = 0, height = 0;
+	pConverter->GetSize(&width, &height);
+
+	const UINT stride = width * 4;                 // 32 bpp
+	const UINT imageSize = stride * height;
+
+	const DWORD headerSize = sizeof(BITMAPINFOHEADER);
+	const DWORD totalSize = headerSize + imageSize;
+
+	BYTE* pDib = (BYTE*)GlobalAllocPtr(GMEM_MOVEABLE | GMEM_ZEROINIT, totalSize);
+	if (!pDib)
+		return NULL;
+
+	BITMAPINFOHEADER* pbih = (BITMAPINFOHEADER*)pDib;
+	pbih->biSize = headerSize;
+	pbih->biWidth = (LONG)width;
+	pbih->biHeight = (LONG)height;            // positive = bottom-up
+	pbih->biPlanes = 1;
+	pbih->biBitCount = 32;
+	pbih->biCompression = BI_RGB;
+	pbih->biSizeImage = imageSize;
+
+	BYTE* pBits = pDib + headerSize;
+	hr = pConverter->CopyPixels(NULL, stride, imageSize, pBits);
+	if (FAILED(hr))
+	{
+		GlobalFreePtr(pDib);
+		return NULL;
+	}
+
+	// WIC gives top-down data; we need bottom-up → flip the rows
+	{
+		BYTE* pTop = pBits;
+		BYTE* pBottom = pBits + (height - 1) * stride;
+		std::vector<BYTE> temp(stride);
+
+		for (UINT y = 0; y < height / 2; ++y)
+		{
+			memcpy(temp.data(), pTop, stride);
+			memcpy(pTop, pBottom, stride);
+			memcpy(pBottom, temp.data(), stride);
+
+			pTop += stride;
+			pBottom -= stride;
+		}
+	}
+	return pDib;
+}
 
 #ifndef TIFF_SUPPORT
 extern "C" BYTE huge * Tiff2Dib(LPCTSTR fname)
@@ -37,6 +140,50 @@ extern "C" BYTE huge * Jpg2Dib(LPCTSTR filename, LPCTSTR outName, double scaling
 {
 	return NULL;
 }
+
+#else
+
+void Dib::Jpg2Dib(LPCTSTR filename)
+{
+	lpDib = NULL;
+
+
+	// Convert LPCTSTR → LPCWSTR  (change ANSI to Unicode)
+	CStringW wfilename(filename);   // MFC way (recommended since you're using MFC)
+
+	// Or if you don't want CStringW:
+	// USES_CONVERSION;
+	// LPCWSTR wfilename = A2W(filename);
+
+	ComPtr<IWICImagingFactory> pFactory;
+	HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pFactory));
+
+	if (FAILED(hr))
+		return;
+
+	ComPtr<IWICBitmapDecoder> pDecoder;
+	hr = pFactory->CreateDecoderFromFilename(wfilename, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder);
+
+	if (FAILED(hr))
+	{
+		if (ShowErrorsInMessageBox())
+			MessageBox(NULL, TEXT("Failed to open JPEG"), TEXT("Error"), MB_ICONERROR);
+		return;
+	}
+
+	ComPtr<IWICBitmapFrameDecode> pFrame;
+	hr = pDecoder->GetFrame(0, &pFrame);
+	if (FAILED(hr))
+		return;
+
+	// Optional: apply EXIF orientation automatically
+	ComPtr<IWICBitmapSource> pSource = pFrame;
+	// (You can add a WIC orientation transform here later if desired)
+
+	lpDib = WicBitmapToDib(pSource.Get(), scalingFactor);
+}
+
+
 #endif
 
 #ifndef PNG_SUPPORT

@@ -110,18 +110,23 @@ INLINE void Dib::Tiff2Dib(LPCTSTR filename)
 }			  
 
 /////////////////////////////////////////////////////////////////////////
+///  Aug 19, 2026 -- getting rid of ancient jpeg code -- use WIC instead
+#if 0
 
 INLINE void Dib::Jpg2Dib(LPCTSTR filename)
 {				 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 	char buf[300];
 	wsprintf(buf, "Dib::Jpg2Dib(%s, NULL, %s)\n", filename, ShowErrorsInMessageBox() ? "Show Errors In MessageBox" : "Don't show Errors In MessageBox"); 
 	//MessageBox(NULL, buf, "", MB_ICONINFORMATION); 
 	//TRACE(buf);
-#endif
+//#endif
 
 	lpDib = ::Jpg2Dib(filename, NULL, scalingFactor, ShowErrorsInMessageBox());
 }			  				  
+
+#endif
+
 
 /////////////////////////////////////////////////////////////////////////
 
