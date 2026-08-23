@@ -14,7 +14,32 @@
 
 #define PALVERSION 0x300
 #define MAXPALETTE	256
-#define TRACE(x)
+//#define TRACE(x)
+
+#ifdef _DEBUG
+
+#include <windows.h>
+#include <stdio.h>
+#include <stdarg.h>
+
+inline void DibTrace(const char* format, ...)
+{
+	char buf[1024];
+	va_list args;
+	va_start(args, format);
+	_vsnprintf_s(buf, _countof(buf), _TRUNCATE, format, args);
+	va_end(args);
+	OutputDebugStringA(buf);
+}
+
+#define TRACE DibTrace
+
+#else
+
+#define TRACE __noop
+
+#endif
+
 
 static char DibAssertBuffer__[2048];
 

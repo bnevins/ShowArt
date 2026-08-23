@@ -1,6 +1,6 @@
 #include "stdwin.h"
 #include "dib.h"
-#include "dibpriv.h"
+//#include "dibpriv.h"
 
 static HINSTANCE HinstDLL = NULL;
 
