@@ -40,6 +40,8 @@ public:
 	virtual void 	Show(HDC hdc,	int x = 0, int y = 0, int w = 0, int h = 0, DWORD rop = SRCCOPY);
 	virtual void 	Show(			int x = 0, int y = 0, int w = 0, int h = 0, DWORD rop = SRCCOPY);
 	static	int&	ShowErrorsInMessageBox();
+	bool			IsPreview() const { return isPreview; }
+	void			SetIsPreview(bool b) { isPreview = b; }
 
 protected:						 			 
 				CArt();		
@@ -58,6 +60,12 @@ private:
 	int			ok;
 	HWND		hwndOwner;		// window that "owns" the CArt, if any - for getting HDC's...  
 	LPCTSTR		filename;
+	
+	// true if it's a NEF that can't have pixels read.  
+	//Instead we use the much smaller jpeg thumbnail inside the NEF file.  
+	//This is a workaround for the fact that WIC can't read NEF files directly.  The thumbnail is usually 1600x1200 or smaller, so it won't be as good as the full NEF, but it's better than nothing.
+	// this flag needs to be checked before trying to save a NEF file.  Otherwise the nef file will be over-written with a jpeg!
+	bool		isPreview = false;
 };								  		   		 		  
 
  class	BNEXPORT DDB : public CArt

@@ -21,3 +21,6 @@ also fix here:
         }
 
         DibEntry de;
+
+
+				TODO - add debug message that will call TRACE or AfxMessageBox...

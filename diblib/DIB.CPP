@@ -54,7 +54,7 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 			pScaled = pScaler;
 	}
 
-	// Convert to 32bpp BGRA (easiest + works with your existing code)
+	// Convert to 32bpp BGRA (easiest + works with the existing code)
 	ComPtr<IWICFormatConverter> pConverter;
 	hr = pFactory->CreateFormatConverter(&pConverter);
 	if (FAILED(hr))
@@ -72,6 +72,15 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 
 	UINT width = 0, height = 0;
 	pConverter->GetSize(&width, &height);
+	
+	//////////////////////////////////////////////////////////
+	
+	// FIXME TEMP TEMP TEMP 
+	CString msg;
+	msg.Format(_T("NEF size: %u x %u"), width, height);
+	TRACE(msg);
+	WICPixelFormatGUID format;
+	pConverter->GetPixelFormat(&format);
 
 	const UINT stride = width * 4;                 // 32 bpp
 	const UINT imageSize = stride * height;
@@ -80,6 +89,7 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 	const DWORD totalSize = headerSize + imageSize;
 
 	BYTE* pDib = (BYTE*)GlobalAllocPtr(GMEM_MOVEABLE | GMEM_ZEROINIT, totalSize);
+	
 	if (!pDib)
 		return NULL;
 
@@ -94,6 +104,25 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 
 	BYTE* pBits = pDib + headerSize;
 	hr = pConverter->CopyPixels(NULL, stride, imageSize, pBits);
+	
+	if (FAILED(hr))
+	{
+		// wbn fixme -- trace
+		// 
+		//CString msg;
+		//msg.Format(_T("CopyPixels failed. HRESULT = 0x%08X"), hr);
+		//MessageBox(NULL, msg, _T("Error"), MB_OK);
+		GlobalFreePtr(pDib);
+		return NULL;
+	}
+	if (SUCCEEDED(hr) && width > 10 && height > 10)
+	{
+		// Look at a pixel near the center
+		UINT x = width / 2;
+		UINT y = height / 2;
+		BYTE* p = pBits + y * stride + x * 4;
+	}
+	
 	if (FAILED(hr))
 	{
 		GlobalFreePtr(pDib);
@@ -119,11 +148,14 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 	return pDib;
 }
 
-// WBN August 2026 -- the handful of lines of code in this method replace thousands and thousands of lines of image handling code.  Amazing!!
+
+
+
 
 void Dib::Image2Dib(LPCTSTR filename)
 {
 	lpDib = NULL;
+
 	CStringW wfilename(filename);
 
 	ComPtr<IWICImagingFactory> pFactory;
@@ -131,23 +163,60 @@ void Dib::Image2Dib(LPCTSTR filename)
 	if (FAILED(hr))
 		return;
 
-	ComPtr<IWICBitmapDecoder> pDecoder;
-	hr = pFactory->CreateDecoderFromFilename(wfilename, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder);
-	if (FAILED(hr))
+	// --- 1. Try full-resolution image first ---
+	{
+		ComPtr<IWICBitmapDecoder> pDecoder;
+		hr = pFactory->CreateDecoderFromFilename(wfilename, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder);
+		if (SUCCEEDED(hr))
+		{
+			ComPtr<IWICBitmapFrameDecode> pFrame;
+			hr = pDecoder->GetFrame(0, &pFrame);
+			if (SUCCEEDED(hr) && pFrame)
+			{
+				lpDib = WicBitmapToDib(pFrame.Get(), scalingFactor);
+			}
+		}
+	}
+
+	// --- 2. If full image failed, try the embedded thumbnail with a fresh decoder ---  
+	
+	// DO NOT REUSE THE SAME DECODER, because some formats (like NEF) 
+	// will return the same frame for both full image and thumbnail, and if the full image failed, the thumbnail will also fail. So we need a fresh decoder to get the thumbnail.
+	
+	if (!lpDib)
+	{
+		ComPtr<IWICBitmapDecoder> pDecoder;
+		hr = pFactory->CreateDecoderFromFilename(wfilename, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder);
+		if (SUCCEEDED(hr))
+		{
+			ComPtr<IWICBitmapSource> pThumbnail;
+			hr = pDecoder->GetThumbnail(&pThumbnail);
+			if (SUCCEEDED(hr) && pThumbnail)
+			{
+				lpDib = WicBitmapToDib(pThumbnail.Get(), scalingFactor);
+
+				if (lpDib)
+					SetIsPreview(true);
+			}
+		}
+	}
+
+	if (!lpDib)
 	{
 		if (ShowErrorsInMessageBox())
-			MessageBox(NULL, TEXT("Failed to open image"), TEXT("Error"), MB_ICONERROR);
+			MessageBox(NULL, TEXT(" decode image"), TEXT("Error"), MB_ICONERROR);
 		return;
 	}
 
-	ComPtr<IWICBitmapFrameDecode> pFrame;
-	hr = pDecoder->GetFrame(0, &pFrame);
-	if (FAILED(hr))
-		return;
-
-	lpDib = WicBitmapToDib(pFrame.Get(), scalingFactor);
+	// FIXME WBN
+	if (IsPreview() && ShowErrorsInMessageBox())
+	{
+		MessageBox(NULL,
+			TEXT("Note: Only the embedded preview was available for this file.\n")
+			TEXT("Full-resolution data could not be decoded."),
+			TEXT("Preview Only"), MB_OK | MB_ICONINFORMATION);
+	}
 }
-
 
 #ifndef TIFF_SUPPORT
 extern "C" BYTE huge * Tiff2Dib(LPCTSTR fname)
