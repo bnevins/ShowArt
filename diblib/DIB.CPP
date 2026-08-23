@@ -77,8 +77,8 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 	
 	// FIXME TEMP TEMP TEMP 
 	CString msg;
-	msg.Format(_T("NEF size: %u x %u"), width, height);
-	TRACE(msg);
+	TRACE(_T("NEF size: %u x %u"), width, height);
+
 	WICPixelFormatGUID format;
 	pConverter->GetPixelFormat(&format);
 
