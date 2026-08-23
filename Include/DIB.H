@@ -82,6 +82,7 @@ private:
 class	BNEXPORT Dib : public CArt
 {
 public:	
+	void			Image2Dib(LPCTSTR filename);  // new replacement for ALL image files
 	static void		setScale(double num);
 	static double   getScale();
 	bool rotate(int numQuarterTurnsCW);

@@ -1,0 +1,8 @@
+get rid of IsValidArtName()
+current problem in Image2Dib --
+
+hr = pFactory->CreateDecoderFromFilename(wfilename, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder);
+
+If it isn't an image hr == failed.  And lpDib is set to null.  But calling code has no clue that the dib is bad.
+
+

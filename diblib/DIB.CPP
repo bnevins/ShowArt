@@ -119,6 +119,34 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 	return pDib;
 }
 
+void Dib::Image2Dib(LPCTSTR filename)
+{
+	lpDib = NULL;
+	CStringW wfilename(filename);
+
+	ComPtr<IWICImagingFactory> pFactory;
+	HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pFactory));
+	if (FAILED(hr))
+		return;
+
+	ComPtr<IWICBitmapDecoder> pDecoder;
+	hr = pFactory->CreateDecoderFromFilename(wfilename, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder);
+	if (FAILED(hr))
+	{
+		if (ShowErrorsInMessageBox())
+			MessageBox(NULL, TEXT("Failed to open image"), TEXT("Error"), MB_ICONERROR);
+		return;
+	}
+
+	ComPtr<IWICBitmapFrameDecode> pFrame;
+	hr = pDecoder->GetFrame(0, &pFrame);
+	if (FAILED(hr))
+		return;
+
+	lpDib = WicBitmapToDib(pFrame.Get(), scalingFactor);
+}
+
+
 #ifndef TIFF_SUPPORT
 extern "C" BYTE huge * Tiff2Dib(LPCTSTR fname)
 {
@@ -145,42 +173,7 @@ extern "C" BYTE huge * Jpg2Dib(LPCTSTR filename, LPCTSTR outName, double scaling
 
 void Dib::Jpg2Dib(LPCTSTR filename)
 {
-	lpDib = NULL;
-
-
-	// Convert LPCTSTR → LPCWSTR  (change ANSI to Unicode)
-	CStringW wfilename(filename);   // MFC way (recommended since you're using MFC)
-
-	// Or if you don't want CStringW:
-	// USES_CONVERSION;
-	// LPCWSTR wfilename = A2W(filename);
-
-	ComPtr<IWICImagingFactory> pFactory;
-	HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pFactory));
-
-	if (FAILED(hr))
-		return;
-
-	ComPtr<IWICBitmapDecoder> pDecoder;
-	hr = pFactory->CreateDecoderFromFilename(wfilename, NULL, GENERIC_READ, WICDecodeMetadataCacheOnLoad, &pDecoder);
-
-	if (FAILED(hr))
-	{
-		if (ShowErrorsInMessageBox())
-			MessageBox(NULL, TEXT("Failed to open JPEG"), TEXT("Error"), MB_ICONERROR);
-		return;
-	}
-
-	ComPtr<IWICBitmapFrameDecode> pFrame;
-	hr = pDecoder->GetFrame(0, &pFrame);
-	if (FAILED(hr))
-		return;
-
-	// Optional: apply EXIF orientation automatically
-	ComPtr<IWICBitmapSource> pSource = pFrame;
-	// (You can add a WIC orientation transform here later if desired)
-
-	lpDib = WicBitmapToDib(pSource.Get(), scalingFactor);
+	Image2Dib(filename);
 }
 
 
@@ -193,6 +186,7 @@ extern  BYTE huge * Png2Dib(LPCTSTR filename)
 	return NULL;
 }
 #endif
+
 
 #define Delay(x)
 #if 0
@@ -458,7 +452,9 @@ void	Dib::Read(LPCTSTR szFileName)
 	HCURSOR oldCursor = SetCursor(LoadCursor(NULL, IDC_WAIT));
 	
 	ArtType type = GetType();
-
+	Image2Dib(szFileName);
+#if 0
+	
 	try
 	{
 		switch(type)
@@ -487,6 +483,7 @@ void	Dib::Read(LPCTSTR szFileName)
 		TRACE("Caught an Exception");
 
 	}
+#endif
 
 	ctorAfter();
 	SetCursor(oldCursor);
