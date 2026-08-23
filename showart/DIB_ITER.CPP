@@ -48,9 +48,10 @@ int DibLib::Add(const CString& filename, bool autoDelete)
 	if(IsList(filename))
 		return AddList(filename, autoDelete);
 
+
 	if(!IsValidArtName(filename))
 	{
-		return Num() - 1;
+		//return Num() - 1;  // FIXME !!!!!  FIXME  
 	}
 	
 	DibEntry de;

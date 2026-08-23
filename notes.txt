@@ -5,4 +5,19 @@ hr = pFactory->CreateDecoderFromFilename(wfilename, NULL, GENERIC_READ, WICDecod
 
 If it isn't an image hr == failed.  And lpDib is set to null.  But calling code has no clue that the dib is bad.
 
+also fix here:
 
+
++++ b/showart/DIB_ITER.CPP
+@@ -48,9 +48,10 @@ int DibLib::Add(const CString& filename, bool autoDelete)
+        if(IsList(filename))
+                return AddList(filename, autoDelete);
+
++
+        if(!IsValidArtName(filename))
+        {
+-               return Num() - 1;
++               //return Num() - 1;  // FIXME !!!!!  FIXME
+        }
+
+        DibEntry de;

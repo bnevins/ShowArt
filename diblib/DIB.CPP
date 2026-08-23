@@ -19,7 +19,7 @@ using Microsoft::WRL::ComPtr;  // so you can write ComPtr<> instead of Microsoft
 #pragma comment(lib, "windowscodecs.lib")
 using Microsoft::WRL::ComPtr;
 
-// Creates a packed DIB (BITMAPINFOHEADER + bits) that your existing
+// Creates a packed DIB (BITMAPINFOHEADER + bits) that the existing
 // Dib class expects. Returns NULL on failure.
 // The returned pointer must be freed with GlobalFreePtr / your Free().
 static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
@@ -118,6 +118,8 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 	}
 	return pDib;
 }
+
+// WBN August 2026 -- the handful of lines of code in this method replace thousands and thousands of lines of image handling code.  Amazing!!
 
 void Dib::Image2Dib(LPCTSTR filename)
 {
