@@ -114,10 +114,12 @@ INLINE void Dib::Tiff2Dib(LPCTSTR filename)
 #if 0
 
 INLINE void Dib::Jpg2Dib(LPCTSTR filename)
-{				 
+{		
+	// fixme cleanup
+	// 
 //#ifdef _DEBUG
-	char buf[300];
-	wsprintf(buf, "Dib::Jpg2Dib(%s, NULL, %s)\n", filename, ShowErrorsInMessageBox() ? "Show Errors In MessageBox" : "Don't show Errors In MessageBox"); 
+	//char buf[300];
+	//wsprintf(buf, "Dib::Jpg2Dib(%s, NULL, %s)\n", filename, ShowErrorsInMessageBox() ? "Show Errors In MessageBox" : "Don't show Errors In MessageBox"); 
 	//MessageBox(NULL, buf, "", MB_ICONINFORMATION); 
 	//TRACE(buf);
 //#endif

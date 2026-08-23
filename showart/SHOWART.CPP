@@ -29,7 +29,7 @@ static char *GetNextFilename(char *src, char *dest);
 static void PathOnly(LPTSTR name);
 
 const int	CShowartApp::FILENAME_BUFFER_SIZE = 500000;
-const char* CShowartApp::VERSION = "10.0\nMarch 2023";
+const char* CShowartApp::VERSION = "10.2\nAugust 2026";
 const CString CShowartApp::True = "true";
 const CString CShowartApp::False = "false";
 Dib		NullDib;
