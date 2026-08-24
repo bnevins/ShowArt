@@ -18,6 +18,7 @@
 #undef THIS_FILE
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
+#include "WicUtils.h"
  
 char	Scratch[1000];
 
@@ -307,6 +308,12 @@ BOOL CAboutDlg::OnInitDialog( )
 #endif
 
 	CDialog::OnInitDialog();
+
+	// temp temp temp fixme wbn
+	auto foo = WicUtils::GetFormatsWithEncoderAndDecoder();
+
+
+
 
 	return TRUE;
 }

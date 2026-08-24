@@ -78,6 +78,9 @@
     <ClCompile Include="Winutil.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WicUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SHOWART.RC">
@@ -155,6 +158,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WinUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WicUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

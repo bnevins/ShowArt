@@ -286,6 +286,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</BrowseInformation>
     </ClCompile>
+    <ClCompile Include="WicUtils.cpp" />
     <ClCompile Include="Winutil.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Disabled</Optimization>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -324,6 +325,7 @@
     <ClInclude Include="SuperSkip.h" />
     <ClInclude Include="UserPreferences.h" />
     <ClInclude Include="View.h" />
+    <ClInclude Include="WicUtils.h" />
     <ClInclude Include="WinUtil.h" />
   </ItemGroup>
   <ItemGroup>
