@@ -6,6 +6,7 @@
 #include <map>
 #include <set>
 #include <algorithm>
+#include <vector>
 
 using std::wstring;
 using std::vector;
@@ -195,4 +196,83 @@ const vector<WicFormat>& WicUtils::GetAllOpenableFormats()
 	if (!initialized)
 		Initialize();
 	return allOpenableFormats;
+}
+
+/////////////////////////////////////////////////////////////////////////
+// Filter strings for CFileDialog
+
+static CString BuildFilter(const vector<WicFormat>& formats, bool includeListFiles)
+{
+	std::vector<TCHAR> buf;
+	buf.reserve(4096);
+
+	auto append = [&](LPCTSTR s)
+		{
+			while (s && *s)
+				buf.push_back(*s++);
+		};
+
+	auto add = [&](LPCTSTR label, LPCTSTR wild)
+		{
+			append(label);
+			buf.push_back(_T('\0'));
+			append(wild);
+			buf.push_back(_T('\0'));
+		};
+
+	// "All Supported Images" using preferred extensions only
+	CString allWild;
+	for (const auto& f : formats)
+	{
+		if (f.preferredExt.empty())
+			continue;
+		if (!allWild.IsEmpty())
+			allWild += _T(';');
+		allWild += _T('*');
+		allWild += f.preferredExt.c_str();
+	}
+	if (allWild.IsEmpty())
+		allWild = _T("*.jpg;*.png;*.bmp;*.tif;*.gif");
+
+	add(_T("All Supported Images"), allWild);
+
+	// One entry per format
+	for (const auto& f : formats)
+	{
+		CString wild;
+		for (size_t i = 0; i < f.allExts.size(); ++i)
+		{
+			if (i) wild += _T(';');
+			wild += _T('*');
+			wild += f.allExts[i].c_str();
+		}
+		if (wild.IsEmpty())
+			continue;
+
+		CString label;
+		label.Format(_T("%s (%s)"), CString(f.name.c_str()).GetString(), (LPCTSTR)wild);
+		add(label, wild);
+	}
+
+	if (includeListFiles)
+		add(_T("List Files (*.lst)"), _T("*.lst"));
+
+	CString allFilter;
+	if (!allFilter.LoadString(AFX_IDS_ALLFILTER) || allFilter.IsEmpty())
+		allFilter = _T("All Files (*.*)");
+	add(allFilter, _T("*.*"));
+
+	buf.push_back(_T('\0'));  // final extra null
+
+	return CString(buf.data(), (int)buf.size());
+}
+
+CString WicUtils::GetOpenFileFilter()
+{
+	return BuildFilter(GetAllOpenableFormats(), true);
+}
+
+CString WicUtils::GetSaveFileFilter()
+{
+	return BuildFilter(GetSaveFormats(), false);
 }

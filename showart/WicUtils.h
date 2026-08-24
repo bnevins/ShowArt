@@ -19,6 +19,10 @@ public:
 	static const std::vector<WicFormat>& GetOpenOnlyFormats();
 	static const std::vector<WicFormat>& GetAllOpenableFormats();
 
+	// Double-null-terminated filter strings for CFileDialog / OPENFILENAME
+	static CString GetOpenFileFilter();   // all openable + *.lst + *.*
+	static CString GetSaveFileFilter();   // saveable only + *.*
+
 private:
 	static bool initialized;
 	static std::vector<WicFormat> saveFormats;

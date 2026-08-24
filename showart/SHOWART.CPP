@@ -552,8 +552,7 @@ void CShowartApp::OnFileOpen()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
- 
- // prompt for file name - used for open and save as
+// prompt for file name - used for open and save as
 BOOL CShowartApp::DoPromptFileName(LPSTR fileName, UINT nIDSTitle, DWORD lFlags,
 	BOOL bOpenFileDialog, CDocTemplate* pTemplate)
 {
@@ -578,75 +577,12 @@ BOOL CShowartApp::DoPromptFileName(LPSTR fileName, UINT nIDSTitle, DWORD lFlags,
 			dlgFile.m_ofn.lpstrInitialDir = Prefs.saveDir;
 	}
 
-	// ---------- Build filter in a plain buffer (reliable) ----------
-	const auto& formats = bOpenFileDialog
-		? WicUtils::GetAllOpenableFormats()
-		: WicUtils::GetSaveFormats();
+	// Filter comes from WicUtils (already double-null terminated)
+	CString strFilter = bOpenFileDialog
+		? WicUtils::GetOpenFileFilter()
+		: WicUtils::GetSaveFileFilter();
 
-	std::vector<TCHAR> filter;
-	filter.reserve(4096);
-
-	auto append = [&](LPCTSTR s)
-		{
-			while (*s)
-				filter.push_back(*s++);
-		};
-
-	auto addFilter = [&](LPCTSTR label, LPCTSTR wildcard)
-		{
-			append(label);
-			filter.push_back(_T('\0'));
-			append(wildcard);
-			filter.push_back(_T('\0'));
-		};
-
-	// 1. All Supported Images
-	{
-		CString allWild;
-		for (const auto& f : formats)
-		{
-			for (const auto& ext : f.allExts)
-			{
-				if (!allWild.IsEmpty())
-					allWild += _T(';');
-				allWild += _T('*');
-				allWild += ext.c_str();
-			}
-		}
-		addFilter(_T("All Supported Images"), allWild);
-		TRACE(_T("AllSupported wildcard = [%s]\n"), (LPCTSTR)allWild);
-		TRACE(_T("Number of formats = %d\n"), (int)formats.size());
-	}
-
-	// 2. One entry per format
-	for (const auto& f : formats)
-	{
-		CString wild;
-		for (size_t i = 0; i < f.allExts.size(); ++i)
-		{
-			if (i > 0)
-				wild += _T(';');
-			wild += _T('*');
-			wild += f.allExts[i].c_str();
-		}
-
-		CString label;
-		label.Format(_T("%s (%s)"), f.name.c_str(), (LPCTSTR)wild);
-		addFilter(label, wild);
-	}
-
-	// 3. List files
-	addFilter(_T("List Files (*.lst)"), _T("*.lst"));
-
-	// 4. All files
-	CString allFilter;
-	VERIFY(allFilter.LoadString(AFX_IDS_ALLFILTER));
-	addFilter(allFilter, _T("*.*"));
-
-	// Final extra null
-	filter.push_back(_T('\0'));
-
-	dlgFile.m_ofn.lpstrFilter = filter.data();
+	dlgFile.m_ofn.lpstrFilter = strFilter;
 	dlgFile.m_ofn.hwndOwner = AfxGetApp()->m_pMainWnd->GetSafeHwnd();
 	dlgFile.m_ofn.lpstrTitle = title;
 	dlgFile.m_ofn.lpstrFile = fileName;
