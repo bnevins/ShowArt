@@ -148,10 +148,6 @@ static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
 	return pDib;
 }
 
-
-
-
-
 void Dib::Image2Dib(LPCTSTR filename)
 {
 	lpDib = NULL;

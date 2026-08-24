@@ -1,21 +1,27 @@
 #pragma once
+
 #include <vector>
 #include <string>
 
 struct WicFormat
 {
-	std::wstring name;              // "JPEG", "PNG", ...
-	std::wstring preferredExt;      // ".jpg"
-	std::vector<std::wstring> allExts; // { ".jpg", ".jpeg", ".jpe" }
-	static std::vector<WicFormat> GetSupportedFormats();
-	static CString GetSupportedFormatsString();
-
+	std::wstring name;
+	std::wstring preferredExt;
+	std::vector<std::wstring> allExts;
 };
 
 class WicUtils
 {
 public:
-	// Returns formats that support both encoding and decoding
-	static std::vector<WicFormat> GetCannedFormats();
-	static std::vector<WicFormat> GetFormatsWithEncoderAndDecoder();
+	static void Initialize();
+
+	static const std::vector<WicFormat>& GetSaveFormats();
+	static const std::vector<WicFormat>& GetOpenOnlyFormats();
+	static const std::vector<WicFormat>& GetAllOpenableFormats();
+
+private:
+	static bool initialized;
+	static std::vector<WicFormat> saveFormats;
+	static std::vector<WicFormat> openOnlyFormats;
+	static std::vector<WicFormat> allOpenableFormats;
 };

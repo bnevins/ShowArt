@@ -105,7 +105,6 @@ BOOL CShowartApp::InitInstance()
 	// hard to test and debug
 
 	TRACE("%s -- InitInstance!!\n", __argv[0]);
-
 	SetDialogBkColor();        // set dialog background color to gray
 	SetRegistryKey(_T("Elf Software"));
 
@@ -149,6 +148,7 @@ BOOL CShowartApp::InitInstance()
 	m_pMainWnd->DragAcceptFiles();
 	SetupShellRegistry();
 	//Gdiplus::GdiplusStartup(&m_gdiplusToken, &m_gdiplusStartupInput, NULL);
+	WicUtils::Initialize();
 	return TRUE;
 }
 
@@ -310,7 +310,7 @@ BOOL CAboutDlg::OnInitDialog( )
 	CDialog::OnInitDialog();
 
 	// temp temp temp fixme wbn
-	auto foo = WicUtils::GetFormatsWithEncoderAndDecoder();
+	//auto foo = WicUtils::GetFormatsWithEncoderAndDecoder();
 
 
 
@@ -556,116 +556,131 @@ void CShowartApp::OnFileOpen()
  // prompt for file name - used for open and save as
 BOOL CShowartApp::DoPromptFileName(LPSTR fileName, UINT nIDSTitle, DWORD lFlags,
 	BOOL bOpenFileDialog, CDocTemplate* pTemplate)
-		// if pTemplate==NULL => all document templates
-{                                                     
-	// Changes are noted, o/w this is cut-code from MFC CWinApp ...
-	static DWORD oldFilterIndex = 1;	// TODO:  save in profile file...
-	
+{
+	static DWORD oldFilterIndex = 1;
+
 	CFileDialog dlgFile(bOpenFileDialog);
-	
+
 	CString title;
 	VERIFY(title.LoadString(nIDSTitle));
-	
+
 	dlgFile.m_ofn.Flags |= lFlags;
-	
-	if(bOpenFileDialog)
+
+	if (bOpenFileDialog)
 	{
 		LPCTSTR dir = GetOpenDir();
+		if (dir)
+			dlgFile.m_ofn.lpstrInitialDir = dir;
+	}
+	else
+	{
+		if (*Prefs.saveDir)
+			dlgFile.m_ofn.lpstrInitialDir = Prefs.saveDir;
+	}
 
-		if(dir)
-		    dlgFile.m_ofn.lpstrInitialDir = dir;
-	}
-	else
-	{
-		if(*Prefs.saveDir)
-	    	dlgFile.m_ofn.lpstrInitialDir = Prefs.saveDir;
-	}
-    // manually adding a (multiple) extension   BN 12/93
-	CString strFilter = "Art Files";
-	strFilter += (char) '\0';
-	strFilter += "*.bmp;*.dib;*.gif;*.tif;*.jpg;*.png";
-	strFilter += (char) '\0';
-	// End Change -- BN
-	CString strDefault;
-	if (pTemplate != NULL)
-	{
-		ASSERT_VALID(pTemplate);
-		AppendFilterSuffix(strFilter, dlgFile.m_ofn, pTemplate, &strDefault);
-	}
-	else
-	{
-		// do for all doc template
-		  
-		//POSITION pos = m_templateList.GetHeadPosition();
-		POSITION pos = GetFirstDocTemplatePosition();
-		while (pos)
+	// ---------- Build filter in a plain buffer (reliable) ----------
+	const auto& formats = bOpenFileDialog
+		? WicUtils::GetAllOpenableFormats()
+		: WicUtils::GetSaveFormats();
+
+	std::vector<TCHAR> filter;
+	filter.reserve(4096);
+
+	auto append = [&](LPCTSTR s)
 		{
-			CDocTemplate* pdt = GetNextDocTemplate(pos);
+			while (*s)
+				filter.push_back(*s++);
+		};
 
-			AppendFilterSuffix(strFilter, dlgFile.m_ofn,
-				pdt, NULL);
+	auto addFilter = [&](LPCTSTR label, LPCTSTR wildcard)
+		{
+			append(label);
+			filter.push_back(_T('\0'));
+			append(wildcard);
+			filter.push_back(_T('\0'));
+		};
+
+	// 1. All Supported Images
+	{
+		CString allWild;
+		for (const auto& f : formats)
+		{
+			for (const auto& ext : f.allExts)
+			{
+				if (!allWild.IsEmpty())
+					allWild += _T(';');
+				allWild += _T('*');
+				allWild += ext.c_str();
+			}
 		}
+		addFilter(_T("All Supported Images"), allWild);
+		TRACE(_T("AllSupported wildcard = [%s]\n"), (LPCTSTR)allWild);
+		TRACE(_T("Number of formats = %d\n"), (int)formats.size());
 	}
 
-	// append the "*.*" all files filter
+	// 2. One entry per format
+	for (const auto& f : formats)
+	{
+		CString wild;
+		for (size_t i = 0; i < f.allExts.size(); ++i)
+		{
+			if (i > 0)
+				wild += _T(';');
+			wild += _T('*');
+			wild += f.allExts[i].c_str();
+		}
+
+		CString label;
+		label.Format(_T("%s (%s)"), f.name.c_str(), (LPCTSTR)wild);
+		addFilter(label, wild);
+	}
+
+	// 3. List files
+	addFilter(_T("List Files (*.lst)"), _T("*.lst"));
+
+	// 4. All files
 	CString allFilter;
 	VERIFY(allFilter.LoadString(AFX_IDS_ALLFILTER));
-	strFilter += allFilter;
-	strFilter += (char)'\0';        // next string please
-	strFilter += "*.*";
-	strFilter += (char)'\0';        // next string please
+	addFilter(allFilter, _T("*.*"));
 
-	strFilter += "List Files (*.lst)";
-	strFilter += (char) '\0';
-	strFilter += "*.lst";
-	strFilter += (char) '\0';
-	
-	strFilter += (char)'\0';        // last string
-	dlgFile.m_ofn.nMaxCustFilter++;
+	// Final extra null
+	filter.push_back(_T('\0'));
 
-
-	dlgFile.m_ofn.lpstrFilter = strFilter;
+	dlgFile.m_ofn.lpstrFilter = filter.data();
 	dlgFile.m_ofn.hwndOwner = AfxGetApp()->m_pMainWnd->GetSafeHwnd();
 	dlgFile.m_ofn.lpstrTitle = title;
-	dlgFile.m_ofn.lpstrFile = fileName; 
+	dlgFile.m_ofn.lpstrFile = fileName;
 	dlgFile.m_ofn.nFilterIndex = oldFilterIndex;
 	dlgFile.m_ofn.nMaxFile = FILENAME_BUFFER_SIZE;
-	
-	#if(WINVER >= 0x0400)
-	dlgFile.m_ofn.Flags |= OFN_ALLOWMULTISELECT | OFN_NOVALIDATE | OFN_EXPLORER;// BN
-	//dlgFile.m_ofn.Flags |= OFN_ALLOWMULTISELECT | OFN_PATHMUSTEXIST | OFN_EXPLORER;// BN
-	#else
-	dlgFile.m_ofn.Flags |= OFN_ALLOWMULTISELECT | OFN_PATHMUSTEXIST;// BN
-	#endif
+
+#if (WINVER >= 0x0400)
+	dlgFile.m_ofn.Flags |= OFN_ALLOWMULTISELECT | OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+#else
+	dlgFile.m_ofn.Flags |= OFN_ALLOWMULTISELECT | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+#endif
 
 	DWORD pickFolderCheckboxID = 60000;
-	CString checkboxText = "Open all files in the folder";
-	
-	if(bOpenFileDialog)
+	CString checkboxText = _T("Open all files in the folder");
+
+	if (bOpenFileDialog)
 		dlgFile.AddCheckButton(pickFolderCheckboxID, checkboxText, Prefs.openAllFilesInFolder);
 
-	BOOL bRet = dlgFile.DoModal() == IDOK ? TRUE : FALSE;
+	BOOL bRet = (dlgFile.DoModal() == IDOK) ? TRUE : FALSE;
 
 	oldFilterIndex = dlgFile.m_ofn.nFilterIndex;
 
 	if (bOpenFileDialog)
-		dlgFile.GetCheckButtonState(pickFolderCheckboxID, Prefs.openAllFilesInFolder); // openAllFilesInFolder REFERENCE sent in!
-	
-	if(bRet == IDOK)
-	{
-		LPTSTR dir;
-		
-		if(bOpenFileDialog)
-			dir = Prefs.openDir;
-		else
-			dir = Prefs.saveDir;
+		dlgFile.GetCheckButtonState(pickFolderCheckboxID, Prefs.openAllFilesInFolder);
 
+	if (bRet == IDOK)
+	{
+		LPTSTR dir = bOpenFileDialog ? Prefs.openDir : Prefs.saveDir;
 		lstrcpy(dir, dlgFile.GetPathName());
 		PathOnly(dir);
 	}
+
 	return bRet;
 }
-
 /////////////////////////////////////////////////////////////////////////////
 
 static char *GetFileDirName(char *src, char *dest)
