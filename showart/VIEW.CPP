@@ -77,6 +77,10 @@ void CShowartView::MyDraw(CDC* pDC)
 	if(!dib)
 		return;
 	
+	// 0826 fixme wbn
+	if (!dib->OK())  // e.g. a non-image file...
+		return;
+
 	if(prevDib != dib)
 		SetScrollSizes();
 	
@@ -101,6 +105,7 @@ void CShowartView::MyDraw(CDC* pDC)
 		CBrush brush(RGB(0,0,0)); 
 		pDC->FillRect(&r, &brush);
 	}
+// 0826 wbn fixme fixme Now it is too late to delete bad art file!
 
 	dib->ShowWithPal(hDC, origin.x, origin.y, dibRect.Width(), dibRect.Height());			
 }

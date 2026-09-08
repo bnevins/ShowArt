@@ -24,3 +24,17 @@ also fix here:
 
 
 				TODO - add debug message that will call TRACE or AfxMessageBox...
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+in Dib::Read() get rid of GetType() -- just try to load it as an image and if it fails, silently remove it...
+
+n Image2Dib line 200 showing messagebox.  don't do it unless there is only 1 image.??
+
+DibEntry::Load 109    --> autocopypng get rid of it!!
+============================
+
+HOW TO DO IT -- it loads a zip file.  lpDib is NULL but it is still in the dibentryvec.  super complicated code!!!
+

@@ -200,7 +200,7 @@ void Dib::Image2Dib(LPCTSTR filename)
 	if (!lpDib)
 	{
 		if (ShowErrorsInMessageBox())
-			MessageBox(NULL, TEXT(" decode image"), TEXT("Error"), MB_ICONERROR);
+			MessageBox(NULL, TEXT( filename), TEXT("Error"), MB_ICONERROR);
 		return;
 	}
 
