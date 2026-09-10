@@ -1,0 +1,106 @@
+Here’s a clean, modern WIC-based replacement that keeps your existing Dib interface working.
+Strategy
+
+Keep Dib::Jpg2Dib, Dib::Png2Dib, Dib::Gif2Dib (and the public API) exactly as they are.
+Replace only the bodies so they use WIC and still produce a classic packed DIB in lpDib.
+Your existing ctorAfter(), Show_, palette code, GetDDB, etc. continue to work unchanged.
+
+
+1. Helper – convert WIC bitmap → classic DIB
+Add this (or put it in a new .cpp file that is part of the DLL):
+
+=============================
+
+#include <wincodec.h>
+#include <wrl/client.h>   // ComPtr
+#pragma comment(lib, "windowscodecs.lib")
+
+using Microsoft::WRL::ComPtr;
+
+// Creates a packed DIB (BITMAPINFOHEADER + bits) that your existing
+// Dib class expects. Returns NULL on failure.
+// The returned pointer must be freed with GlobalFreePtr / your Free().
+static BYTE* WicBitmapToDib(IWICBitmapSource* pSource, double scale)
+{
+    if (!pSource)
+        return NULL;
+
+    ComPtr<IWICImagingFactory> pFactory;
+    HRESULT hr = CoCreateInstance(CLSID_WICImagingFactory, NULL,
+                                  CLSCTX_INPROC_SERVER,
+                                  IID_PPV_ARGS(&pFactory));
+    if (FAILED(hr))
+        return NULL;
+
+    // Optional scaling
+    ComPtr<IWICBitmapSource> pScaled = pSource;
+    if (scale > 0.0 && scale < 0.99)
+    {
+        UINT w = 0, h = 0;
+        pSource->GetSize(&w, &h);
+        UINT newW = (UINT)(w * scale + 0.5);
+        UINT newH = (UINT)(h * scale + 0.5);
+        if (newW < 1) newW = 1;
+        if (newH < 1) newH = 1;
+
+        ComPtr<IWICBitmapScaler> pScaler;
+        hr = pFactory->CreateBitmapScaler(&pScaler);
+        if (SUCCEEDED(hr))
+            hr = pScaler->Initialize(pSource, newW, newH,
+                                     WICBitmapInterpolationModeFant);
+        if (SUCCEEDED(hr))
+            pScaled = pScaler;
+    }
+
+    // Convert to 32bpp BGRA (easiest + works with your existing code)
+    ComPtr<IWICFormatConverter> pConverter;
+    hr = pFactory->CreateFormatConverter(&pConverter);
+    if (FAILED(hr))
+        return NULL;
+
+    hr = pConverter->Initialize(pScaled.Get(),
+                                GUID_WICPixelFormat32bppBGRA,
+                                WICBitmapDitherTypeNone,
+                                NULL, 0.0,
+                                WICBitmapPaletteTypeCustom);
+    if (FAILED(hr))
+        return NULL;
+
+    UINT width = 0, height = 0;
+    pConverter->GetSize(&width, &height);
+
+    const UINT stride = width * 4;
+    const UINT imageSize = stride * height;
+
+    // Classic packed DIB: BITMAPINFOHEADER + bits (no color table for 32-bit)
+    const DWORD headerSize = sizeof(BITMAPINFOHEADER);
+    const DWORD totalSize  = headerSize + imageSize;
+
+    BYTE* pDib = (BYTE*)GlobalAllocPtr(GMEM_MOVEABLE | GMEM_ZEROINIT, totalSize);
+    if (!pDib)
+        return NULL;
+
+    BITMAPINFOHEADER* pbih = (BITMAPINFOHEADER*)pDib;
+    pbih->biSize        = headerSize;
+    pbih->biWidth       = (LONG)width;
+    pbih->biHeight      = -((LONG)height);   // top-down (negative height)
+    pbih->biPlanes      = 1;
+    pbih->biBitCount    = 32;
+    pbih->biCompression = BI_RGB;
+    pbih->biSizeImage   = imageSize;
+
+    BYTE* pBits = pDib + headerSize;
+    hr = pConverter->CopyPixels(NULL, stride, imageSize, pBits);
+    if (FAILED(hr))
+    {
+        GlobalFreePtr(pDib);
+        return NULL;
+    }
+
+    // Your existing code expects bottom-up in many places.
+    // If you prefer classic bottom-up DIBs, flip here or change biHeight to positive
+    // and reverse the rows. For most modern drawing (StretchDIBits etc.) top-down is fine.
+    // Many of your Show_ paths already work with either.
+
+    return pDib;
+}
